@@ -2,6 +2,7 @@ package com.api.lavendermovies.domain.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,4 +22,9 @@ public class DirectorModel implements Serializable {
 
     @Column(nullable = false)
     private String gender;
+
+    @OneToMany
+    @Column()
+    private List<MovieModel> movie;
+
 }

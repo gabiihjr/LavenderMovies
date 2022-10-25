@@ -38,6 +38,9 @@ public class MovieModel implements Serializable {
     @Column(nullable = false)
     private int genre;
 
+    @Column
+    private String directorName;
+
     public UUID getId() {
         return id;
     }
