@@ -1,4 +1,4 @@
-package com.api.lavendermovies.config;
+package com.api.lavendermovies.config.exceptions;
 
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
