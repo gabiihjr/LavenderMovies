@@ -5,9 +5,7 @@ import com.api.lavendermovies.domain.entities.Genre;
 import javax.validation.constraints.NotBlank;
 
 public class CreateMovieDto {
-    @NotBlank
     private String title;
-    @NotBlank
     private String summary;
     private double rating;
     private int duration;
