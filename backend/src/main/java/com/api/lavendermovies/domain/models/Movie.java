@@ -1,13 +1,14 @@
-package com.api.lavendermovies.domain.entities;
+package com.api.lavendermovies.domain.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
 @Table(name = "movie")
-public class MovieModel implements Serializable {
+public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -38,8 +39,9 @@ public class MovieModel implements Serializable {
     @Column(nullable = false)
     private int genre;
 
-    @Column
-    private String directorName;
+    @ManyToOne
+    @JoinColumn(name = "director_id", nullable = false)
+    private Director director;
 
     public UUID getId() {
         return id;
@@ -111,5 +113,13 @@ public class MovieModel implements Serializable {
 
     public void setGenre(Genre genre) {
         this.genre = genre.getCode();
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
     }
 }
