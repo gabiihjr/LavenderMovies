@@ -1,5 +1,6 @@
 package com.api.lavendermovies.service;
 
+import com.api.lavendermovies.config.BusinessException;
 import com.api.lavendermovies.domain.dtos.CreateMovieDto;
 import com.api.lavendermovies.domain.entities.MovieModel;
 import com.api.lavendermovies.repository.MovieRepository;
@@ -20,6 +21,8 @@ public class MovieService {
     }
 
     public MovieModel save(CreateMovieDto movieDto) {
+        if (movieDto.getTitle() == null)
+            throw new BusinessException("Field title is required.");
         var movie = new MovieModel();
         BeanUtils.copyProperties(movieDto, movie);
         movie.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
