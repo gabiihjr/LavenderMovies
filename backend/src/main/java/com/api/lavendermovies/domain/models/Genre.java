@@ -1,4 +1,4 @@
-package com.api.lavendermovies.domain.entities;
+package com.api.lavendermovies.domain.models;
 
 public enum Genre {
     ACTION(1),

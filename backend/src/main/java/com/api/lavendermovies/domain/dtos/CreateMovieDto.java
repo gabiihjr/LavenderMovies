@@ -1,8 +1,8 @@
 package com.api.lavendermovies.domain.dtos;
 
-import com.api.lavendermovies.domain.entities.Genre;
+import com.api.lavendermovies.domain.models.Genre;
 
-import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 public class CreateMovieDto {
     private String title;
@@ -10,8 +10,8 @@ public class CreateMovieDto {
     private double rating;
     private int duration;
     private int releaseYear;
-
     private int genre;
+    private UUID directorId;
 
     public String getTitle() {
         return title;
@@ -59,5 +59,13 @@ public class CreateMovieDto {
 
     public void setGenre(Genre genre) {
         this.genre = genre.getCode();
+    }
+
+    public UUID getDirectorId() {
+        return directorId;
+    }
+
+    public void setDirectorId(UUID directorId) {
+        this.directorId = directorId;
     }
 }
