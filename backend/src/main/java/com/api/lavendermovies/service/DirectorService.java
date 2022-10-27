@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DirectorService {
@@ -33,5 +34,12 @@ public class DirectorService {
         var getDirectorList = new ArrayList<GetDirectorDto>();
         BeanUtils.copyProperties(directorList, getDirectorList);
         return getDirectorList;
+    }
+
+    public GetDirectorDto findById(UUID id) {
+       var director = directorRepository.getReferenceById(id);
+       var directorDto = new GetDirectorDto();
+        BeanUtils.copyProperties(director, directorDto);
+        return directorDto;
     }
 }

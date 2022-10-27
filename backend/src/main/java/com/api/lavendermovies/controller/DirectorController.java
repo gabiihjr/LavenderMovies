@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -35,5 +36,10 @@ public class DirectorController {
     @GetMapping
     public ResponseEntity<List<GetDirectorDto>> findAllDirectors(){
         return status(HttpStatus.OK).body(directorService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findOneDirector(@PathVariable(value = "id") UUID id){
+        return status(HttpStatus.OK).body(directorService.findById(id));
     }
 }
