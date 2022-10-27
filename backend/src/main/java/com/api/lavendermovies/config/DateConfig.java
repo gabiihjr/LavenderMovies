@@ -19,7 +19,7 @@ public class DateConfig {
 
     @Bean
     @Primary
-    public ObjectMapper objectMapper() {
+    public ObjectMapper objectMapperTime() {
         JavaTimeModule module = new JavaTimeModule();
         module.addSerializer(LOCAL_DATETIME_SERIALIZER);
         return new ObjectMapper().registerModule(module);

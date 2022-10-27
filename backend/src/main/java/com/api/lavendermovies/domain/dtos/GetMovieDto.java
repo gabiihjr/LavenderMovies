@@ -1,5 +1,7 @@
 package com.api.lavendermovies.domain.dtos;
 
+import com.api.lavendermovies.domain.models.Genre;
+
 public class GetMovieDto {
     private String title;
     private String summary;
@@ -48,11 +50,11 @@ public class GetMovieDto {
         this.releaseYear = releaseYear;
     }
 
-    public int getGenre() {
-        return genre;
+    public Genre getGenre() {
+        return Genre.valueOf(genre);
     }
 
-    public void setGenre(int genre) {
-        this.genre = genre;
+    public void setGenre(Genre genre) {
+        this.genre = genre.getCode();
     }
 }

@@ -4,12 +4,11 @@ import com.api.lavendermovies.domain.dtos.CreateDirectorDto;
 import com.api.lavendermovies.domain.dtos.GetDirectorDto;
 import com.api.lavendermovies.domain.models.Director;
 import com.api.lavendermovies.repository.DirectorRepository;
+import com.api.lavendermovies.utils.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,15 +30,11 @@ public class DirectorService {
 
     public List<GetDirectorDto> findAll() {
         var directorList = directorRepository.findAll();
-        var getDirectorList = new ArrayList<GetDirectorDto>();
-        BeanUtils.copyProperties(directorList, getDirectorList);
-        return getDirectorList;
+        return ObjectMapper.mapAll(directorList, GetDirectorDto.class);
     }
 
     public GetDirectorDto findById(UUID id) {
-       var director = directorRepository.getReferenceById(id);
-       var directorDto = new GetDirectorDto();
-        BeanUtils.copyProperties(director, directorDto);
-        return directorDto;
+        var director = directorRepository.getReferenceById(id);
+        return ObjectMapper.map(director, GetDirectorDto.class);
     }
 }
