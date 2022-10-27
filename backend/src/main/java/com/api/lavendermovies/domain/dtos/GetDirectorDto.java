@@ -1,5 +1,7 @@
 package com.api.lavendermovies.domain.dtos;
 
+import com.api.lavendermovies.domain.models.Movie;
+
 import java.util.List;
 
 public class GetDirectorDto {
