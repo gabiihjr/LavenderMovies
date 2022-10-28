@@ -96,4 +96,12 @@ public class MovieService {
 
         return movieDto;
     }
+
+    public void delete(UUID id) {
+        notFoundException(id);
+
+        var movie = movieRepository.getReferenceById(id);
+
+        movieRepository.delete(movie);
+    }
 }

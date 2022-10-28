@@ -46,4 +46,10 @@ public class DirectorController {
                                                  @RequestBody @Valid CreateDirectorDto directorDto){
         return status(HttpStatus.OK).body(directorService.update(directorDto, id));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteDirector(@PathVariable(value = "id") UUID id){
+        directorService.delete(id);
+        return status(HttpStatus.OK).body("Director deleted successfully");
+    }
 }

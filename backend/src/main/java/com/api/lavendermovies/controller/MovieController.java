@@ -47,4 +47,10 @@ public class MovieController {
                                               @RequestBody @Valid UpdateMovieDto movieDto){
         return status(HttpStatus.OK).body(movieService.update(id, movieDto));
     };
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteMovie(@PathVariable(value = "id") UUID id){
+        movieService.delete(id);
+        return status(HttpStatus.OK).body("Movie deleted successfully");
+    }
 }

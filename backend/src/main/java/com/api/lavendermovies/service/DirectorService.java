@@ -78,4 +78,12 @@ public class DirectorService {
 
         return directorDto;
     }
+
+    public void delete(UUID id) {
+        notFoundException(id);
+
+        var director = directorRepository.getReferenceById(id);
+
+        directorRepository.delete(director);
+    }
 }
