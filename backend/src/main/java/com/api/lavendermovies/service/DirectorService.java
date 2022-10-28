@@ -9,6 +9,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,17 +25,22 @@ public class DirectorService {
 
     public CreateDirectorDto save(CreateDirectorDto directorDto) {
         var director = ObjectMapper.map(directorDto, Director.class);
+        director.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
+
         directorRepository.save(director);
+
         return directorDto;
     }
 
     public List<GetDirectorDto> findAll() {
         var directorList = directorRepository.findAll();
+
         return ObjectMapper.mapAll(directorList, GetDirectorDto.class);
     }
 
     public GetDirectorDto findById(UUID id) {
         var director = directorRepository.getReferenceById(id);
+
         return ObjectMapper.map(director, GetDirectorDto.class);
     }
 }
