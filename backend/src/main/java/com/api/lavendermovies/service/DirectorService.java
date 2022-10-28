@@ -1,5 +1,7 @@
 package com.api.lavendermovies.service;
 
+import com.api.lavendermovies.config.exceptions.BusinessException;
+import com.api.lavendermovies.config.exceptions.RequiredFieldException;
 import com.api.lavendermovies.domain.dtos.CreateDirectorDto;
 import com.api.lavendermovies.domain.dtos.GetDirectorDto;
 import com.api.lavendermovies.domain.models.Director;
@@ -23,7 +25,20 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
+    public void requiredFieldExceptions(CreateDirectorDto directorDto) {
+        if (directorDto.getName() == null) throw new RequiredFieldException("name");
+        if (directorDto.getAge() == 0) throw new RequiredFieldException("age");
+    }
+
+    public void notFoundException(UUID id){
+        var directorExists = directorRepository.findById(id);
+
+        if (directorExists.isEmpty()) throw new BusinessException("Director not found");
+    }
+
     public CreateDirectorDto save(CreateDirectorDto directorDto) {
+        requiredFieldExceptions(directorDto);
+
         var director = ObjectMapper.map(directorDto, Director.class);
         director.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
@@ -39,12 +54,18 @@ public class DirectorService {
     }
 
     public GetDirectorDto findById(UUID id) {
+        notFoundException(id);
+
         var director = directorRepository.getReferenceById(id);
 
         return ObjectMapper.map(director, GetDirectorDto.class);
     }
 
     public CreateDirectorDto update(CreateDirectorDto directorDto, UUID id) {
+        notFoundException(id);
+
+        requiredFieldExceptions(directorDto);
+
         var director = directorRepository.getReferenceById(id);
 
         BeanUtils.copyProperties(directorDto, director);

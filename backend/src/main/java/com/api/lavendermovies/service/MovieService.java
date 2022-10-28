@@ -1,5 +1,6 @@
 package com.api.lavendermovies.service;
 
+import com.api.lavendermovies.config.exceptions.BusinessException;
 import com.api.lavendermovies.config.exceptions.RequiredFieldException;
 import com.api.lavendermovies.domain.dtos.CreateMovieDto;
 import com.api.lavendermovies.domain.dtos.GetMovieDto;
@@ -29,11 +30,32 @@ public class MovieService {
         this.directorRepository = directorRepository;
     }
 
+    public void requiredFieldExceptions(Object movieDto) {
+        if (movieDto instanceof CreateMovieDto createMovieDto) {
+            if (createMovieDto.getTitle() == null) throw new RequiredFieldException("title");
+            if (createMovieDto.getSummary() == null) throw new RequiredFieldException("summary");
+            if (createMovieDto.getDuration() == 0) throw new RequiredFieldException("duration");
+            if (createMovieDto.getReleaseYear() == 0) throw new RequiredFieldException("release year");
+            if (createMovieDto.getDirectorId() == null) throw new RequiredFieldException("director");
+        }
+        if (movieDto instanceof UpdateMovieDto updateMovieDto) {
+            if (updateMovieDto.getTitle() == null) throw new RequiredFieldException("title");
+            if (updateMovieDto.getSummary() == null) throw new RequiredFieldException("summary");
+            if (updateMovieDto.getDuration() == 0) throw new RequiredFieldException("duration");
+            if (updateMovieDto.getReleaseYear() == 0) throw new RequiredFieldException("release year");
+        }
+    }
+
+    public void notFoundException(UUID id){
+        var movieExists = movieRepository.findById(id);
+
+        if (movieExists.isEmpty()) throw new BusinessException("Movie not found");
+    }
+
     public CreateMovieDto save(CreateMovieDto movieDto) {
-        if (movieDto.getTitle() == null) throw new RequiredFieldException("title");
+        requiredFieldExceptions(movieDto);
 
         var movie = ObjectMapper.map(movieDto, Movie.class);
-
         var director = directorRepository.getReferenceById(movieDto.getDirectorId());
 
         movie.setDirector(director);
@@ -51,12 +73,16 @@ public class MovieService {
     }
 
     public GetMovieDto findById(UUID id) {
+        notFoundException(id);
         var movie = movieRepository.getReferenceById(id);
 
         return ObjectMapper.map(movie, GetMovieDto.class);
     }
 
     public UpdateMovieDto update(UUID id, UpdateMovieDto movieDto) {
+        notFoundException(id);
+        requiredFieldExceptions(movieDto);
+
         var movie = movieRepository.getReferenceById(id);
 
         BeanUtils.copyProperties(movieDto, movie);
