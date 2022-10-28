@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MovieService {
@@ -29,17 +30,28 @@ public class MovieService {
 
     public CreateMovieDto save(CreateMovieDto movieDto) {
         if (movieDto.getTitle() == null) throw new RequiredFieldException("title");
-        var movie = new Movie();
-        BeanUtils.copyProperties(movieDto, movie);
+
+        var movie = ObjectMapper.map(movieDto, Movie.class);
+
         var director = directorRepository.getReferenceById(movieDto.getDirectorId());
+
         movie.setDirector(director);
         movie.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
+
         movieRepository.save(movie);
+
         return movieDto;
     }
 
     public List<GetMovieDto> findAll() {
         var movieList = movieRepository.findAll();
+
         return ObjectMapper.mapAll(movieList, GetMovieDto.class);
+    }
+
+    public GetMovieDto findById(UUID id) {
+        var movie = movieRepository.getReferenceById(id);
+
+        return ObjectMapper.map(movie, GetMovieDto.class);
     }
 }

@@ -2,14 +2,13 @@ package com.api.lavendermovies.domain.dtos;
 
 import com.api.lavendermovies.domain.enums.Genre;
 
-public class GetMovieDto {
+public class GetMoviesFromDirectorDtos {
     private String title;
     private String summary;
     private double rating;
     private int duration;
     private int releaseYear;
     private int genre;
-    private GetDirectorFromMoviesDto director;
 
     public String getTitle() {
         return title;
@@ -57,13 +56,5 @@ public class GetMovieDto {
 
     public void setGenre(Genre genre) {
         this.genre = genre.getCode();
-    }
-
-    public GetDirectorFromMoviesDto getDirector() {
-        return director;
-    }
-
-    public void setDirector(GetDirectorFromMoviesDto director) {
-        this.director = director;
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -33,5 +34,10 @@ public class MovieController {
     @GetMapping
     public ResponseEntity<List<GetMovieDto>> findAllMovies(){
         return status(HttpStatus.OK).body(movieService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findOneMovie(@PathVariable(value = "id") UUID id){
+        return status(HttpStatus.OK).body(movieService.findById(id));
     }
 }

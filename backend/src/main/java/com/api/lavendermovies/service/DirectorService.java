@@ -22,8 +22,7 @@ public class DirectorService {
     }
 
     public CreateDirectorDto save(CreateDirectorDto directorDto) {
-        var director = new Director();
-        BeanUtils.copyProperties(directorDto, director);
+        var director = ObjectMapper.map(directorDto, Director.class);
         directorRepository.save(director);
         return directorDto;
     }

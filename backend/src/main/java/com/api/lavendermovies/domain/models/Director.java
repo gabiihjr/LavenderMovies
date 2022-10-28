@@ -1,7 +1,6 @@
 package com.api.lavendermovies.domain.models;
 
 import com.api.lavendermovies.domain.enums.Gender;
-import com.api.lavendermovies.domain.enums.Genre;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -56,8 +55,8 @@ public class Director implements Serializable {
         this.age = age;
     }
 
-    public Genre getGender() {
-        return Genre.valueOf(gender);
+    public Gender getGender() {
+        return Gender.valueOf(gender);
     }
 
     public void setGender(Gender gender) {
