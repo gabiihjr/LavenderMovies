@@ -1,11 +1,10 @@
 package com.api.lavendermovies.domain.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.api.lavendermovies.domain.enums.Genre;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -43,7 +42,6 @@ public class Movie implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "director_id", nullable = false)
-//    @JsonIgnore
     private Director director;
 
     public UUID getId() {

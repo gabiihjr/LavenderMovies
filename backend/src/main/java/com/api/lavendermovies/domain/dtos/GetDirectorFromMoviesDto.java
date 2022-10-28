@@ -1,9 +1,11 @@
 package com.api.lavendermovies.domain.dtos;
 
 import com.api.lavendermovies.domain.enums.Gender;
+import com.api.lavendermovies.domain.enums.Genre;
 
-public class CreateDirectorDto {
+import java.util.List;
 
+public class GetDirectorFromMoviesDto {
     private String name;
     private int age;
     private int gender;
@@ -24,6 +26,14 @@ public class CreateDirectorDto {
         this.age = age;
     }
 
+//    public Gender getGender() {
+//        return Gender.valueOf(gender);
+//    }
+
+//    public void setGender(Gender gender) {
+//        this.gender = gender.getCode();
+//    }
+
     public Gender getGender() {
         return Gender.valueOf(gender);
     }
@@ -31,5 +41,4 @@ public class CreateDirectorDto {
     public void setGender(Gender gender) {
         this.gender = gender.getCode();
     }
-
 }

@@ -1,14 +1,14 @@
 package com.api.lavendermovies.domain.dtos;
 
-import com.api.lavendermovies.domain.models.Movie;
+import com.api.lavendermovies.domain.enums.Gender;
 
 import java.util.List;
 
 public class GetDirectorDto {
     private String name;
     private int age;
-    private String gender;
-    private List<GetMovieDto> movie;
+    private int gender;
+    private List<GetMoviesFromDirectorDtos> movie;
 
     public String getName() {
         return name;
@@ -26,19 +26,19 @@ public class GetDirectorDto {
         this.age = age;
     }
 
-    public String getGender() {
-        return gender;
+    public Gender getGender() {
+        return Gender.valueOf(gender);
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(Gender gender) {
+        this.gender = gender.getCode();
     }
 
-    public List<GetMovieDto> getMovie() {
+    public List<GetMoviesFromDirectorDtos> getMovie() {
         return movie;
     }
 
-    public void setMovie(List<GetMovieDto> movie) {
+    public void setMovie(List<GetMoviesFromDirectorDtos> movie) {
         this.movie = movie;
     }
 }
