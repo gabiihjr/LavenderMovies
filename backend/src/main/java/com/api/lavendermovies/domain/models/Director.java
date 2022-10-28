@@ -1,12 +1,12 @@
 package com.api.lavendermovies.domain.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.api.lavendermovies.domain.enums.Gender;
+import com.api.lavendermovies.domain.enums.Genre;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,11 +26,10 @@ public class Director implements Serializable {
     private int age;
 
     @Column(nullable = false)
-    private String gender;
+    private int gender;
 
     @OneToMany(mappedBy = "director")
     @Cascade(CascadeType.ALL)
-    @JsonIgnore
     private List<Movie> movie;
 
     public UUID getId() {
@@ -57,12 +56,12 @@ public class Director implements Serializable {
         this.age = age;
     }
 
-    public String getGender() {
-        return gender;
+    public Genre getGender() {
+        return Genre.valueOf(gender);
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(Gender gender) {
+        this.gender = gender.getCode();
     }
 
     public List<Movie> getMovie() {

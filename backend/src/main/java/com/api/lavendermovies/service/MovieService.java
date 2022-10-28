@@ -2,15 +2,18 @@ package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.RequiredFieldException;
 import com.api.lavendermovies.domain.dtos.CreateMovieDto;
+import com.api.lavendermovies.domain.dtos.GetMovieDto;
 import com.api.lavendermovies.domain.models.Movie;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.repository.MovieRepository;
+import com.api.lavendermovies.utils.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @Service
 public class MovieService {
@@ -33,5 +36,10 @@ public class MovieService {
         movie.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
         movieRepository.save(movie);
         return movieDto;
+    }
+
+    public List<GetMovieDto> findAll() {
+        var movieList = movieRepository.findAll();
+        return ObjectMapper.mapAll(movieList, GetMovieDto.class);
     }
 }

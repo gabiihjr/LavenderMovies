@@ -1,6 +1,6 @@
 package com.api.lavendermovies.domain.dtos;
 
-import com.api.lavendermovies.domain.models.Genre;
+import com.api.lavendermovies.domain.enums.Genre;
 
 public class GetMovieDto {
     private String title;

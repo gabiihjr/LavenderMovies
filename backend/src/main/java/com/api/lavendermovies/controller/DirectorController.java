@@ -2,9 +2,7 @@ package com.api.lavendermovies.controller;
 
 import com.api.lavendermovies.domain.dtos.CreateDirectorDto;
 import com.api.lavendermovies.domain.dtos.GetDirectorDto;
-import com.api.lavendermovies.domain.models.Director;
 import com.api.lavendermovies.service.DirectorService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
