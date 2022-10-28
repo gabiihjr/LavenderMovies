@@ -2,6 +2,7 @@ package com.api.lavendermovies.controller;
 
 import com.api.lavendermovies.domain.dtos.CreateMovieDto;
 import com.api.lavendermovies.domain.dtos.GetMovieDto;
+import com.api.lavendermovies.domain.dtos.UpdateMovieDto;
 import com.api.lavendermovies.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,4 +41,10 @@ public class MovieController {
     public ResponseEntity<Object> findOneMovie(@PathVariable(value = "id") UUID id){
         return status(HttpStatus.OK).body(movieService.findById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateMovie(@PathVariable(value = "id") UUID id,
+                                              @RequestBody @Valid UpdateMovieDto movieDto){
+        return status(HttpStatus.OK).body(movieService.update(id, movieDto));
+    };
 }

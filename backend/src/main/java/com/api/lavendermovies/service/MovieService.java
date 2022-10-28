@@ -3,6 +3,7 @@ package com.api.lavendermovies.service;
 import com.api.lavendermovies.config.exceptions.RequiredFieldException;
 import com.api.lavendermovies.domain.dtos.CreateMovieDto;
 import com.api.lavendermovies.domain.dtos.GetMovieDto;
+import com.api.lavendermovies.domain.dtos.UpdateMovieDto;
 import com.api.lavendermovies.domain.models.Movie;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.repository.MovieRepository;
@@ -53,5 +54,20 @@ public class MovieService {
         var movie = movieRepository.getReferenceById(id);
 
         return ObjectMapper.map(movie, GetMovieDto.class);
+    }
+
+    public UpdateMovieDto update(UUID id, UpdateMovieDto movieDto) {
+        var movie = movieRepository.getReferenceById(id);
+
+        BeanUtils.copyProperties(movieDto, movie);
+
+        movie.setId(movie.getId());
+        movie.setCreatedAt(movie.getCreatedAt());
+        movie.setDirector(movie.getDirector());
+        movie.setUpdatedAt(LocalDateTime.now(ZoneId.of("UTC")));
+
+        movieRepository.save(movie);
+
+        return movieDto;
     }
 }

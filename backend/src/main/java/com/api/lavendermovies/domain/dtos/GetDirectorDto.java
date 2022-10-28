@@ -3,12 +3,22 @@ package com.api.lavendermovies.domain.dtos;
 import com.api.lavendermovies.domain.enums.Gender;
 
 import java.util.List;
+import java.util.UUID;
 
 public class GetDirectorDto {
+    private UUID id;
     private String name;
     private int age;
     private int gender;
     private List<GetMoviesFromDirectorDtos> movie;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

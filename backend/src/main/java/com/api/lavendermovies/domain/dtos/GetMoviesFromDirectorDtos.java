@@ -2,13 +2,24 @@ package com.api.lavendermovies.domain.dtos;
 
 import com.api.lavendermovies.domain.enums.Genre;
 
+import java.util.UUID;
+
 public class GetMoviesFromDirectorDtos {
+    private UUID id;
     private String title;
     private String summary;
     private double rating;
     private int duration;
     private int releaseYear;
     private int genre;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

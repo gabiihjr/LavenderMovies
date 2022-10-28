@@ -43,4 +43,18 @@ public class DirectorService {
 
         return ObjectMapper.map(director, GetDirectorDto.class);
     }
+
+    public CreateDirectorDto update(CreateDirectorDto directorDto, UUID id) {
+        var director = directorRepository.getReferenceById(id);
+
+        BeanUtils.copyProperties(directorDto, director);
+
+        director.setId(director.getId());
+        director.setCreatedAt(director.getCreatedAt());
+        director.setUpdatedAt(LocalDateTime.now(ZoneId.of("UTC")));
+
+        directorRepository.save(director);
+
+        return directorDto;
+    }
 }

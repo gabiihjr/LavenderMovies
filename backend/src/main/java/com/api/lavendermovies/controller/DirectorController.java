@@ -40,4 +40,10 @@ public class DirectorController {
     public ResponseEntity<Object> findOneDirector(@PathVariable(value = "id") UUID id){
         return status(HttpStatus.OK).body(directorService.findById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateDirector(@PathVariable(value = "id") UUID id,
+                                                 @RequestBody @Valid CreateDirectorDto directorDto){
+        return status(HttpStatus.OK).body(directorService.update(directorDto, id));
+    }
 }
