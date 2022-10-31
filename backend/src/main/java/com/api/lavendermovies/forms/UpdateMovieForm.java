@@ -1,8 +1,8 @@
-package com.api.lavendermovies.domain.dtos;
+package com.api.lavendermovies.forms;
 
-import com.api.lavendermovies.domain.enums.Genre;
+import com.api.lavendermovies.enums.Genre;
 
-public class UpdateMovieDto {
+public class UpdateMovieForm {
     private String title;
     private String summary;
     private double rating;

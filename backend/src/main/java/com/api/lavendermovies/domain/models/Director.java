@@ -1,6 +1,6 @@
 package com.api.lavendermovies.domain.models;
 
-import com.api.lavendermovies.domain.enums.Gender;
+import com.api.lavendermovies.enums.Gender;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 

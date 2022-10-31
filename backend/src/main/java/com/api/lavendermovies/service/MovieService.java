@@ -2,9 +2,9 @@ package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.BusinessException;
 import com.api.lavendermovies.config.exceptions.RequiredFieldException;
-import com.api.lavendermovies.domain.dtos.CreateMovieDto;
-import com.api.lavendermovies.domain.dtos.GetMovieDto;
-import com.api.lavendermovies.domain.dtos.UpdateMovieDto;
+import com.api.lavendermovies.forms.CreateMovieForm;
+import com.api.lavendermovies.dtos.GetMovieDto;
+import com.api.lavendermovies.forms.UpdateMovieForm;
 import com.api.lavendermovies.domain.models.Movie;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.repository.MovieRepository;
@@ -31,18 +31,18 @@ public class MovieService {
     }
 
     public void requiredFieldExceptions(Object movieDto) {
-        if (movieDto instanceof CreateMovieDto createMovieDto) {
+        if (movieDto instanceof CreateMovieForm createMovieDto) {
             if (createMovieDto.getTitle() == null) throw new RequiredFieldException("title");
             if (createMovieDto.getSummary() == null) throw new RequiredFieldException("summary");
             if (createMovieDto.getDuration() == 0) throw new RequiredFieldException("duration");
             if (createMovieDto.getReleaseYear() == 0) throw new RequiredFieldException("release year");
             if (createMovieDto.getDirectorId() == null) throw new RequiredFieldException("director");
         }
-        if (movieDto instanceof UpdateMovieDto updateMovieDto) {
-            if (updateMovieDto.getTitle() == null) throw new RequiredFieldException("title");
-            if (updateMovieDto.getSummary() == null) throw new RequiredFieldException("summary");
-            if (updateMovieDto.getDuration() == 0) throw new RequiredFieldException("duration");
-            if (updateMovieDto.getReleaseYear() == 0) throw new RequiredFieldException("release year");
+        if (movieDto instanceof UpdateMovieForm updateMovieForm) {
+            if (updateMovieForm.getTitle() == null) throw new RequiredFieldException("title");
+            if (updateMovieForm.getSummary() == null) throw new RequiredFieldException("summary");
+            if (updateMovieForm.getDuration() == 0) throw new RequiredFieldException("duration");
+            if (updateMovieForm.getReleaseYear() == 0) throw new RequiredFieldException("release year");
         }
     }
 
@@ -52,7 +52,7 @@ public class MovieService {
         if (movieExists.isEmpty()) throw new BusinessException("Movie not found");
     }
 
-    public CreateMovieDto save(CreateMovieDto movieDto) {
+    public CreateMovieForm save(CreateMovieForm movieDto) {
         requiredFieldExceptions(movieDto);
 
         var movie = ObjectMapper.map(movieDto, Movie.class);
@@ -79,7 +79,7 @@ public class MovieService {
         return ObjectMapper.map(movie, GetMovieDto.class);
     }
 
-    public UpdateMovieDto update(UUID id, UpdateMovieDto movieDto) {
+    public UpdateMovieForm update(UUID id, UpdateMovieForm movieDto) {
         notFoundException(id);
         requiredFieldExceptions(movieDto);
 

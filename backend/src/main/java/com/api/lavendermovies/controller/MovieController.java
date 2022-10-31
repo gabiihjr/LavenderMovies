@@ -1,8 +1,8 @@
 package com.api.lavendermovies.controller;
 
-import com.api.lavendermovies.domain.dtos.CreateMovieDto;
-import com.api.lavendermovies.domain.dtos.GetMovieDto;
-import com.api.lavendermovies.domain.dtos.UpdateMovieDto;
+import com.api.lavendermovies.forms.CreateMovieForm;
+import com.api.lavendermovies.dtos.GetMovieDto;
+import com.api.lavendermovies.forms.UpdateMovieForm;
 import com.api.lavendermovies.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class MovieController {
 
 
     @PostMapping
-    public ResponseEntity<Object> saveMovie(@RequestBody @Valid CreateMovieDto movieDto){
+    public ResponseEntity<Object> saveMovie(@RequestBody @Valid CreateMovieForm movieDto){
         return status(HttpStatus.CREATED).body(movieService.save(movieDto));
     }
 
@@ -44,7 +44,7 @@ public class MovieController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateMovie(@PathVariable(value = "id") UUID id,
-                                              @RequestBody @Valid UpdateMovieDto movieDto){
+                                              @RequestBody @Valid UpdateMovieForm movieDto){
         return status(HttpStatus.OK).body(movieService.update(id, movieDto));
     };
 

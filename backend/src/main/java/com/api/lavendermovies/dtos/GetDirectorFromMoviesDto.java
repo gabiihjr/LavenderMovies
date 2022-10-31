@@ -1,9 +1,7 @@
-package com.api.lavendermovies.domain.dtos;
+package com.api.lavendermovies.dtos;
 
-import com.api.lavendermovies.domain.enums.Gender;
-import com.api.lavendermovies.domain.enums.Genre;
+import com.api.lavendermovies.enums.Gender;
 
-import java.util.List;
 import java.util.UUID;
 
 public class GetDirectorFromMoviesDto {

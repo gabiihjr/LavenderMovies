@@ -1,6 +1,6 @@
-package com.api.lavendermovies.domain.dtos;
+package com.api.lavendermovies.dtos;
 
-import com.api.lavendermovies.domain.enums.Genre;
+import com.api.lavendermovies.enums.Genre;
 
 import java.util.UUID;
 
