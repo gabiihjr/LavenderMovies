@@ -1,8 +1,8 @@
-package com.api.lavendermovies.domain.dtos;
+package com.api.lavendermovies.forms;
 
-import com.api.lavendermovies.domain.enums.Gender;
+import com.api.lavendermovies.enums.Gender;
 
-public class CreateDirectorDto {
+public class DirectorForm {
 
     private String name;
     private int age;

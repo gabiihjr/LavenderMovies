@@ -1,4 +1,4 @@
-package com.api.lavendermovies.domain.enums;
+package com.api.lavendermovies.enums;
 
 public enum Gender {
     FEMALE(1),

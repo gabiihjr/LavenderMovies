@@ -1,10 +1,10 @@
-package com.api.lavendermovies.domain.dtos;
+package com.api.lavendermovies.forms;
 
-import com.api.lavendermovies.domain.enums.Genre;
+import com.api.lavendermovies.enums.Genre;
 
 import java.util.UUID;
 
-public class CreateMovieDto {
+public class CreateMovieForm {
     private String title;
     private String summary;
     private double rating;

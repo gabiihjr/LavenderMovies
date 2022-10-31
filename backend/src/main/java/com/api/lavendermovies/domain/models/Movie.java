@@ -1,6 +1,6 @@
 package com.api.lavendermovies.domain.models;
 
-import com.api.lavendermovies.domain.enums.Genre;
+import com.api.lavendermovies.enums.Genre;
 
 import javax.persistence.*;
 import java.io.Serializable;

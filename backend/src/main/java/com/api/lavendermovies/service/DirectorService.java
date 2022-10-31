@@ -2,8 +2,8 @@ package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.BusinessException;
 import com.api.lavendermovies.config.exceptions.RequiredFieldException;
-import com.api.lavendermovies.domain.dtos.CreateDirectorDto;
-import com.api.lavendermovies.domain.dtos.GetDirectorDto;
+import com.api.lavendermovies.forms.DirectorForm;
+import com.api.lavendermovies.dtos.GetDirectorDto;
 import com.api.lavendermovies.domain.models.Director;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
@@ -25,7 +25,7 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
-    public void requiredFieldExceptions(CreateDirectorDto directorDto) {
+    public void requiredFieldExceptions(DirectorForm directorDto) {
         if (directorDto.getName() == null) throw new RequiredFieldException("name");
         if (directorDto.getAge() == 0) throw new RequiredFieldException("age");
     }
@@ -36,7 +36,7 @@ public class DirectorService {
         if (directorExists.isEmpty()) throw new BusinessException("Director not found");
     }
 
-    public CreateDirectorDto save(CreateDirectorDto directorDto) {
+    public DirectorForm save(DirectorForm directorDto) {
         requiredFieldExceptions(directorDto);
 
         var director = ObjectMapper.map(directorDto, Director.class);
@@ -61,7 +61,7 @@ public class DirectorService {
         return ObjectMapper.map(director, GetDirectorDto.class);
     }
 
-    public CreateDirectorDto update(CreateDirectorDto directorDto, UUID id) {
+    public DirectorForm update(DirectorForm directorDto, UUID id) {
         notFoundException(id);
 
         requiredFieldExceptions(directorDto);
