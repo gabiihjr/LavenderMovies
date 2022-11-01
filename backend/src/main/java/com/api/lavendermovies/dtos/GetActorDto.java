@@ -9,12 +9,12 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class GetDirectorDto {
+public class GetActorDto {
     private UUID id;
     private String name;
     private int age;
     private int gender;
-    private List<GetMoviesFromDirectorDtos> movie;
+    private List<GetMoviesFromDirectorDtos> movies;
 
     public Gender getGender() {
         return Gender.valueOf(gender);
@@ -24,11 +24,11 @@ public class GetDirectorDto {
         this.gender = gender.getCode();
     }
 
-    public List<GetMoviesFromDirectorDtos> getMovie() {
-        return movie;
+    public List<GetMoviesFromDirectorDtos> getMovies() {
+        return movies;
     }
 
-    public void setMovie(List<GetMoviesFromDirectorDtos> movie) {
-        this.movie = movie;
+    public void setMovies(List<GetMoviesFromDirectorDtos> movies) {
+        this.movies = movies;
     }
 }
