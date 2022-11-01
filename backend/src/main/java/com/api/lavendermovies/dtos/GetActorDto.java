@@ -14,7 +14,7 @@ public class GetActorDto {
     private String name;
     private int age;
     private int gender;
-    private List<GetMoviesFromDirectorDtos> movies;
+    private List<GetMovieFromActorsDto> movies;
 
     public Gender getGender() {
         return Gender.valueOf(gender);
@@ -22,13 +22,5 @@ public class GetActorDto {
 
     public void setGender(Gender gender) {
         this.gender = gender.getCode();
-    }
-
-    public List<GetMoviesFromDirectorDtos> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<GetMoviesFromDirectorDtos> movies) {
-        this.movies = movies;
     }
 }

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class GetMoviesFromDirectorDtos {
+public class GetMovieFromActorsDto {
     private UUID id;
     private String title;
     private String summary;
@@ -16,6 +16,7 @@ public class GetMoviesFromDirectorDtos {
     private int duration;
     private int releaseYear;
     private int genre;
+    private GetDirectorFromMoviesDto director;
 
     public Genre getGenre() {
         return Genre.valueOf(genre);
