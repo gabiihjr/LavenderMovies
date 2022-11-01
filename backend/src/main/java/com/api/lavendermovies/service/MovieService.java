@@ -11,6 +11,7 @@ import com.api.lavendermovies.repository.MovieRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -30,24 +31,7 @@ public class MovieService {
         this.directorRepository = directorRepository;
     }
 
-    public void requiredFieldExceptions(Object movieDto) {
-        if (movieDto instanceof CreateMovieForm createMovieDto) {
-            if (createMovieDto.getTitle() == null) throw new RequiredFieldException("title");
-            if (createMovieDto.getSummary() == null) throw new RequiredFieldException("summary");
-            if (createMovieDto.getDuration() == 0) throw new RequiredFieldException("duration");
-            if (createMovieDto.getReleaseYear() == 0) throw new RequiredFieldException("release year");
-            if (createMovieDto.getDirectorId() == null) throw new RequiredFieldException("director");
-        }
-        if (movieDto instanceof UpdateMovieForm updateMovieForm) {
-            if (updateMovieForm.getTitle() == null) throw new RequiredFieldException("title");
-            if (updateMovieForm.getSummary() == null) throw new RequiredFieldException("summary");
-            if (updateMovieForm.getDuration() == 0) throw new RequiredFieldException("duration");
-            if (updateMovieForm.getReleaseYear() == 0) throw new RequiredFieldException("release year");
-        }
-    }
-
     public CreateMovieForm save(CreateMovieForm movieDto) {
-        requiredFieldExceptions(movieDto);
 
         var movie = ObjectMapper.map(movieDto, Movie.class);
         var director = directorRepository.getReferenceById(movieDto.getDirectorId());
@@ -73,7 +57,6 @@ public class MovieService {
     }
 
     public UpdateMovieForm update(UUID id, UpdateMovieForm movieDto) {
-        requiredFieldExceptions(movieDto);
 
         var movie = movieRepository.findById(id).orElseThrow(() -> new BusinessException("Movie not found"));
 
