@@ -30,12 +30,6 @@ public class DirectorService {
         if (directorDto.getAge() == 0) throw new RequiredFieldException("age");
     }
 
-    public void notFoundException(UUID id){
-        var directorExists = directorRepository.findById(id);
-
-        if (directorExists.isEmpty()) throw new BusinessException("Director not found");
-    }
-
     public DirectorForm save(DirectorForm directorDto) {
         requiredFieldExceptions(directorDto);
 
@@ -54,19 +48,15 @@ public class DirectorService {
     }
 
     public GetDirectorDto findById(UUID id) {
-        notFoundException(id);
-
-        var director = directorRepository.getReferenceById(id);
+        var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
         return ObjectMapper.map(director, GetDirectorDto.class);
     }
 
     public DirectorForm update(DirectorForm directorDto, UUID id) {
-        notFoundException(id);
-
         requiredFieldExceptions(directorDto);
 
-        var director = directorRepository.getReferenceById(id);
+        var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
         BeanUtils.copyProperties(directorDto, director);
 
@@ -80,9 +70,7 @@ public class DirectorService {
     }
 
     public void delete(UUID id) {
-        notFoundException(id);
-
-        var director = directorRepository.getReferenceById(id);
+        var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
         directorRepository.delete(director);
     }
