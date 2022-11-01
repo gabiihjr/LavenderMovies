@@ -1,28 +1,20 @@
 package com.api.lavendermovies.forms;
 
 import com.api.lavendermovies.enums.Gender;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+@Getter
+@Setter
 public class DirectorForm {
-
+    @NotBlank(message = "Field name is required")
     private String name;
+    @Min(value = 1, message = "Age must have minimum value of 1")
     private int age;
     private int gender;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public Gender getGender() {
         return Gender.valueOf(gender);
