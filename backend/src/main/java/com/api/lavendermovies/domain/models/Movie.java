@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -47,6 +48,12 @@ public class Movie implements Serializable {
     @ManyToOne
     @JoinColumn(name = "director_id", nullable = false)
     private Director director;
+
+    @ManyToMany
+    @JoinTable(name = "movies_actors",
+    joinColumns = {@JoinColumn(name = "movie_id") },
+    inverseJoinColumns = {@JoinColumn(name = "actor_id") })
+    private List<Actor> actors;
 
     public Genre getGenre() {
         return Genre.valueOf(genre);
