@@ -5,6 +5,7 @@ import com.api.lavendermovies.forms.CreateMovieForm;
 import com.api.lavendermovies.dtos.GetMovieDto;
 import com.api.lavendermovies.forms.UpdateMovieForm;
 import com.api.lavendermovies.domain.models.Movie;
+import com.api.lavendermovies.repository.ActorRepository;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.repository.MovieRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
@@ -23,23 +24,28 @@ public class MovieService {
     final MovieRepository movieRepository;
     @Autowired
     final DirectorRepository directorRepository;
+    @Autowired
+    final ActorRepository actorRepository;
 
-    public MovieService(MovieRepository movieRepository, DirectorRepository directorRepository) {
+    public MovieService(MovieRepository movieRepository, DirectorRepository directorRepository, ActorRepository actorRepository) {
         this.movieRepository = movieRepository;
         this.directorRepository = directorRepository;
+        this.actorRepository = actorRepository;
     }
 
-    public CreateMovieForm save(CreateMovieForm movieDto) {
+    public CreateMovieForm save(CreateMovieForm movieForm) {
 
-        var movie = ObjectMapper.map(movieDto, Movie.class);
-        var director = directorRepository.getReferenceById(movieDto.getDirectorId());
+        var movie = ObjectMapper.map(movieForm, Movie.class);
+        var director = directorRepository.getReferenceById(movieForm.getDirectorId());
+        var actorsList = actorRepository.findAll();
 
+        movie.setActors(actorsList);
         movie.setDirector(director);
         movie.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
         movieRepository.save(movie);
 
-        return movieDto;
+        return movieForm;
     }
 
     public List<GetMovieDto> findAll() {

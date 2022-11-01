@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -24,6 +25,7 @@ public class CreateMovieForm {
     private int genre;
     @NotNull(message = "Field director is required")
     private UUID directorId;
+    private List<UUID> actorsIds;
 
     public Genre getGenre() {
         return Genre.valueOf(genre);
