@@ -46,12 +46,6 @@ public class MovieService {
         }
     }
 
-    public void notFoundException(UUID id){
-        var movieExists = movieRepository.findById(id);
-
-        if (movieExists.isEmpty()) throw new BusinessException("Movie not found");
-    }
-
     public CreateMovieForm save(CreateMovieForm movieDto) {
         requiredFieldExceptions(movieDto);
 
@@ -73,17 +67,15 @@ public class MovieService {
     }
 
     public GetMovieDto findById(UUID id) {
-        notFoundException(id);
-        var movie = movieRepository.getReferenceById(id);
+        var movie = movieRepository.findById(id).orElseThrow(() -> new BusinessException("Movie not found"));
 
         return ObjectMapper.map(movie, GetMovieDto.class);
     }
 
     public UpdateMovieForm update(UUID id, UpdateMovieForm movieDto) {
-        notFoundException(id);
         requiredFieldExceptions(movieDto);
 
-        var movie = movieRepository.getReferenceById(id);
+        var movie = movieRepository.findById(id).orElseThrow(() -> new BusinessException("Movie not found"));
 
         BeanUtils.copyProperties(movieDto, movie);
 
@@ -98,9 +90,7 @@ public class MovieService {
     }
 
     public void delete(UUID id) {
-        notFoundException(id);
-
-        var movie = movieRepository.getReferenceById(id);
+        var movie = movieRepository.findById(id).orElseThrow(() -> new BusinessException("Movie not found"));
 
         movieRepository.delete(movie);
     }
