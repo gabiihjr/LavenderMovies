@@ -1,7 +1,6 @@
 package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.BusinessException;
-import com.api.lavendermovies.config.exceptions.RequiredFieldException;
 import com.api.lavendermovies.forms.CreateMovieForm;
 import com.api.lavendermovies.dtos.GetMovieDto;
 import com.api.lavendermovies.forms.UpdateMovieForm;
@@ -11,7 +10,6 @@ import com.api.lavendermovies.repository.MovieRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

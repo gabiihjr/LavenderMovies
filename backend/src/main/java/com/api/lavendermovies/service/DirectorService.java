@@ -1,7 +1,6 @@
 package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.BusinessException;
-import com.api.lavendermovies.config.exceptions.RequiredFieldException;
 import com.api.lavendermovies.forms.DirectorForm;
 import com.api.lavendermovies.dtos.GetDirectorDto;
 import com.api.lavendermovies.domain.models.Director;
@@ -25,14 +24,7 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
-    public void requiredFieldExceptions(DirectorForm directorDto) {
-        if (directorDto.getName() == null) throw new RequiredFieldException("name");
-        if (directorDto.getAge() == 0) throw new RequiredFieldException("age");
-    }
-
     public DirectorForm save(DirectorForm directorDto) {
-        requiredFieldExceptions(directorDto);
-
         var director = ObjectMapper.map(directorDto, Director.class);
         director.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
@@ -54,8 +46,6 @@ public class DirectorService {
     }
 
     public DirectorForm update(DirectorForm directorDto, UUID id) {
-        requiredFieldExceptions(directorDto);
-
         var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
         BeanUtils.copyProperties(directorDto, director);

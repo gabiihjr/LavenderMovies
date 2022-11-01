@@ -18,10 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.annotation.Resource;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -63,18 +60,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Override
-    protected @NotNull ResponseEntity<Object> handleMethodArgumentNotValid(
-            MethodArgumentNotValidException ex,
-            @NotNull HttpHeaders headers,
-            @NotNull HttpStatus status,
-            @NotNull WebRequest request) {
-        List<String> errorList = ex
-                .getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.toList());
-        ResponseError error = responseError(ex.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
+    protected @NotNull ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                           @NotNull HttpHeaders headers,
+                                                                           @NotNull HttpStatus status,
+                                                                           @NotNull WebRequest request) {
+        ResponseError error = responseError(Objects.requireNonNull(ex.getFieldError()).getDefaultMessage(), HttpStatus.BAD_REQUEST);
         return handleExceptionInternal(ex, error, headers(), HttpStatus.BAD_REQUEST, request);
     }
 
