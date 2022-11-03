@@ -9,7 +9,7 @@ import com.api.lavendermovies.repository.ActorRepository;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.repository.MovieRepository;
 import com.api.lavendermovies.repository.WriterRepository;
-import com.api.lavendermovies.utils.ObjectMapper;
+import com.api.lavendermovies.config.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

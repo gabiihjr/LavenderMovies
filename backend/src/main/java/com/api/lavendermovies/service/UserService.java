@@ -9,7 +9,7 @@ import com.api.lavendermovies.enums.RoleName;
 import com.api.lavendermovies.forms.UserForm;
 import com.api.lavendermovies.repository.RoleRepository;
 import com.api.lavendermovies.repository.UserRepository;
-import com.api.lavendermovies.utils.ObjectMapper;
+import com.api.lavendermovies.config.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
