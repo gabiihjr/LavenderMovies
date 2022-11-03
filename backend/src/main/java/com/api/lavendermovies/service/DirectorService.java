@@ -24,13 +24,13 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
-    public DirectorForm save(DirectorForm directorDto) {
-        var director = ObjectMapper.map(directorDto, Director.class);
+    public DirectorForm save(DirectorForm directorForm) {
+        var director = ObjectMapper.map(directorForm, Director.class);
         director.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
         directorRepository.save(director);
 
-        return directorDto;
+        return directorForm;
     }
 
     public List<GetDirectorDto> findAll() {
@@ -45,10 +45,10 @@ public class DirectorService {
         return ObjectMapper.map(director, GetDirectorDto.class);
     }
 
-    public DirectorForm update(DirectorForm directorDto, UUID id) {
+    public DirectorForm update(DirectorForm directorForm, UUID id) {
         var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
-        BeanUtils.copyProperties(directorDto, director);
+        BeanUtils.copyProperties(directorForm, director);
 
         director.setId(director.getId());
         director.setCreatedAt(director.getCreatedAt());
@@ -56,7 +56,7 @@ public class DirectorService {
 
         directorRepository.save(director);
 
-        return directorDto;
+        return directorForm;
     }
 
     public void delete(UUID id) {
