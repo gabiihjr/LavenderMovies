@@ -4,11 +4,12 @@ import com.api.lavendermovies.enums.Genre;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
-public class GetMoviesFromDirectorDtos {
+public class GetMoviesFromDirectorDto {
     private UUID id;
     private String title;
     private String summary;
@@ -16,6 +17,8 @@ public class GetMoviesFromDirectorDtos {
     private int duration;
     private int releaseYear;
     private int genre;
+    private GetPersonFromMoviesDto writer;
+    private List<GetPersonFromMoviesDto> actors;
 
     public Genre getGenre() {
         return Genre.valueOf(genre);

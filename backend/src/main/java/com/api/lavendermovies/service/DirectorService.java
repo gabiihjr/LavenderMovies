@@ -1,8 +1,8 @@
 package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.BusinessException;
-import com.api.lavendermovies.forms.DirectorForm;
-import com.api.lavendermovies.dtos.GetDirectorDto;
+import com.api.lavendermovies.dtos.GetPersonDto;
+import com.api.lavendermovies.forms.PersonForm;
 import com.api.lavendermovies.domain.models.Director;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
@@ -24,28 +24,27 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
-    public DirectorForm save(DirectorForm directorForm) {
+    public PersonForm save(PersonForm directorForm) {
         var director = ObjectMapper.map(directorForm, Director.class);
         director.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
-
         directorRepository.save(director);
 
         return directorForm;
     }
 
-    public List<GetDirectorDto> findAll() {
+    public List<GetPersonDto> findAll() {
         var directorList = directorRepository.findAll();
 
-        return ObjectMapper.mapAll(directorList, GetDirectorDto.class);
+        return ObjectMapper.mapAll(directorList, GetPersonDto.class);
     }
 
-    public GetDirectorDto findById(UUID id) {
+    public GetPersonDto findById(UUID id) {
         var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
-        return ObjectMapper.map(director, GetDirectorDto.class);
+        return ObjectMapper.map(director, GetPersonDto.class);
     }
 
-    public DirectorForm update(DirectorForm directorForm, UUID id) {
+    public PersonForm update(PersonForm directorForm, UUID id) {
         var director = directorRepository.findById(id).orElseThrow(() -> new BusinessException("Director not found"));
 
         BeanUtils.copyProperties(directorForm, director);
