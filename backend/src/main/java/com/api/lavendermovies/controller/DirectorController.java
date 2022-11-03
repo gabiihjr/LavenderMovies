@@ -27,8 +27,8 @@ public class DirectorController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveDirector(@RequestBody @Valid DirectorForm directorDto){
-        return status(HttpStatus.CREATED).body(directorService.save(directorDto));
+    public ResponseEntity<Object> saveDirector(@RequestBody @Valid DirectorForm directorForm){
+        return status(HttpStatus.CREATED).body(directorService.save(directorForm));
     }
 
     @GetMapping
@@ -43,8 +43,8 @@ public class DirectorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDirector(@PathVariable(value = "id") UUID id,
-                                                 @RequestBody @Valid DirectorForm directorDto){
-        return status(HttpStatus.OK).body(directorService.update(directorDto, id));
+                                                 @RequestBody @Valid DirectorForm directorForm){
+        return status(HttpStatus.OK).body(directorService.update(directorForm, id));
     }
 
     @DeleteMapping("/{id}")

@@ -60,11 +60,11 @@ public class MovieService {
         return ObjectMapper.map(movie, GetMovieDto.class);
     }
 
-    public UpdateMovieForm update(UUID id, UpdateMovieForm movieDto) {
+    public UpdateMovieForm update(UUID id, UpdateMovieForm movieForm) {
 
         var movie = movieRepository.findById(id).orElseThrow(() -> new BusinessException("Movie not found"));
 
-        BeanUtils.copyProperties(movieDto, movie);
+        BeanUtils.copyProperties(movieForm, movie);
 
         movie.setId(movie.getId());
         movie.setCreatedAt(movie.getCreatedAt());
@@ -73,7 +73,7 @@ public class MovieService {
 
         movieRepository.save(movie);
 
-        return movieDto;
+        return movieForm;
     }
 
     public void delete(UUID id) {

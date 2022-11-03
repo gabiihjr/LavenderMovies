@@ -28,8 +28,8 @@ public class MovieController {
 
 
     @PostMapping
-    public ResponseEntity<Object> saveMovie(@RequestBody @Valid CreateMovieForm movieDto){
-        return status(HttpStatus.CREATED).body(movieService.save(movieDto));
+    public ResponseEntity<Object> saveMovie(@RequestBody @Valid CreateMovieForm movieForm){
+        return status(HttpStatus.CREATED).body(movieService.save(movieForm));
     }
 
     @GetMapping
@@ -44,8 +44,8 @@ public class MovieController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateMovie(@PathVariable(value = "id") UUID id,
-                                              @RequestBody @Valid UpdateMovieForm movieDto){
-        return status(HttpStatus.OK).body(movieService.update(id, movieDto));
+                                              @RequestBody @Valid UpdateMovieForm movieForm){
+        return status(HttpStatus.OK).body(movieService.update(id, movieForm));
     };
 
     @DeleteMapping("/{id}")
