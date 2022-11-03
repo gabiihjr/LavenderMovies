@@ -27,7 +27,6 @@ public class DirectorService {
     public PersonForm save(PersonForm directorForm) {
         var director = ObjectMapper.map(directorForm, Director.class);
         director.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
-
         directorRepository.save(director);
 
         return directorForm;

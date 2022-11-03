@@ -6,6 +6,7 @@ import com.api.lavendermovies.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,27 +27,32 @@ public class DirectorController {
         this.directorService = directorService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Object> saveDirector(@RequestBody @Valid PersonForm directorForm){
         return status(HttpStatus.CREATED).body(directorService.save(directorForm));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
     public ResponseEntity<List<GetPersonDto>> findAllDirectors(){
         return status(HttpStatus.OK).body(directorService.findAll());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Object> findOneDirector(@PathVariable(value = "id") UUID id){
         return status(HttpStatus.OK).body(directorService.findById(id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDirector(@PathVariable(value = "id") UUID id,
                                                  @RequestBody @Valid PersonForm directorForm){
         return status(HttpStatus.OK).body(directorService.update(directorForm, id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDirector(@PathVariable(value = "id") UUID id){
         directorService.delete(id);
