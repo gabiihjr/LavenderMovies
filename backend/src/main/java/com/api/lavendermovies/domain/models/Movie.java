@@ -49,6 +49,10 @@ public class Movie implements Serializable {
     @JoinColumn(name = "director_id", nullable = false)
     private Director director;
 
+    @ManyToOne
+    @JoinColumn(name = "writer_id", nullable = false)
+    private Writer writer;
+
     @ManyToMany
     @JoinTable(name = "movies_actors",
     joinColumns = {@JoinColumn(name = "movie_id") },
