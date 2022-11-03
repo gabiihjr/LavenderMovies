@@ -1,4 +1,4 @@
-package com.api.lavendermovies.utils;
+package com.api.lavendermovies.config;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

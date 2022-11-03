@@ -5,7 +5,7 @@ import com.api.lavendermovies.domain.models.Writer;
 import com.api.lavendermovies.dtos.GetPersonDto;
 import com.api.lavendermovies.forms.PersonForm;
 import com.api.lavendermovies.repository.WriterRepository;
-import com.api.lavendermovies.utils.ObjectMapper;
+import com.api.lavendermovies.config.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
