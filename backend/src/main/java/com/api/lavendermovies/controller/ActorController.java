@@ -1,9 +1,9 @@
 package com.api.lavendermovies.controller;
 
-import com.api.lavendermovies.dtos.GetActorDto;
-import com.api.lavendermovies.forms.ActorForm;
+import com.api.lavendermovies.domain.models.Person;
+import com.api.lavendermovies.dtos.GetPersonDto;
+import com.api.lavendermovies.forms.PersonForm;
 import com.api.lavendermovies.service.ActorService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +28,12 @@ public class ActorController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveActor(@RequestBody @Valid ActorForm actorForm){
+    public ResponseEntity<Object> saveActor(@RequestBody @Valid PersonForm actorForm){
         return status(HttpStatus.CREATED).body(actorService.save(actorForm));
     }
 
     @GetMapping
-    public ResponseEntity<List<GetActorDto>> findAllActors(){
+    public ResponseEntity<List<GetPersonDto>> findAllActors(){
         return status(HttpStatus.OK).body(actorService.findAll());
     }
 
@@ -44,7 +44,7 @@ public class ActorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateActor(@PathVariable(value = "id") UUID id,
-                                              @RequestBody @Valid ActorForm actorForm){
+                                              @RequestBody @Valid PersonForm actorForm){
         return status(HttpStatus.OK).body(actorService.update(actorForm, id));
     }
 

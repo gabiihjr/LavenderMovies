@@ -17,8 +17,9 @@ public class GetMovieDto {
     private int duration;
     private int releaseYear;
     private int genre;
-    private GetDirectorFromMoviesDto director;
-    private List<GetActorFromMoviesDto> actors;
+    private GetPersonFromMoviesDto director;
+    private GetPersonFromMoviesDto writer;
+    private List<GetPersonFromMoviesDto> actors;
 
     public Genre getGenre() {
         return Genre.valueOf(genre);

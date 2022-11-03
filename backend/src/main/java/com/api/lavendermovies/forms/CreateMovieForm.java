@@ -25,6 +25,9 @@ public class CreateMovieForm {
     private int genre;
     @NotNull(message = "Field director is required")
     private UUID directorId;
+    @NotNull(message = "Field writer is required")
+    private UUID writerId;
+    @NotNull(message = "Field actors is required")
     private List<UUID> actorsIds;
 
     public Genre getGenre() {

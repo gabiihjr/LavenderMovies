@@ -8,6 +8,7 @@ import com.api.lavendermovies.domain.models.Movie;
 import com.api.lavendermovies.repository.ActorRepository;
 import com.api.lavendermovies.repository.DirectorRepository;
 import com.api.lavendermovies.repository.MovieRepository;
+import com.api.lavendermovies.repository.WriterRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +26,27 @@ public class MovieService {
     @Autowired
     final DirectorRepository directorRepository;
     @Autowired
+    final WriterRepository writerRepository;
+    @Autowired
     final ActorRepository actorRepository;
 
-    public MovieService(MovieRepository movieRepository, DirectorRepository directorRepository, ActorRepository actorRepository) {
+    public MovieService(MovieRepository movieRepository, DirectorRepository directorRepository, WriterRepository writerRepository, ActorRepository actorRepository) {
         this.movieRepository = movieRepository;
         this.directorRepository = directorRepository;
+        this.writerRepository = writerRepository;
         this.actorRepository = actorRepository;
     }
 
     public CreateMovieForm save(CreateMovieForm movieForm) {
 
         var movie = ObjectMapper.map(movieForm, Movie.class);
-        var director = directorRepository.getReferenceById(movieForm.getDirectorId());
+        var director = directorRepository.findById(movieForm.getDirectorId()).orElseThrow(() -> new BusinessException("Director not found"));
+        var writer = writerRepository.findById(movieForm.getWriterId()).orElseThrow(() -> new BusinessException("Writer not found"));
         var actorsList = actorRepository.findAll();
 
-        movie.setActors(actorsList);
         movie.setDirector(director);
+        movie.setWriter(writer);
+        movie.setActors(actorsList);
         movie.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
         movieRepository.save(movie);
@@ -69,6 +75,8 @@ public class MovieService {
         movie.setId(movie.getId());
         movie.setCreatedAt(movie.getCreatedAt());
         movie.setDirector(movie.getDirector());
+        movie.setWriter(movie.getWriter());
+        movie.setActors(movie.getActors());
         movie.setUpdatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
         movieRepository.save(movie);

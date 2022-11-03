@@ -1,7 +1,7 @@
 package com.api.lavendermovies.controller;
 
-import com.api.lavendermovies.forms.DirectorForm;
-import com.api.lavendermovies.dtos.GetDirectorDto;
+import com.api.lavendermovies.dtos.GetPersonDto;
+import com.api.lavendermovies.forms.PersonForm;
 import com.api.lavendermovies.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +27,12 @@ public class DirectorController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveDirector(@RequestBody @Valid DirectorForm directorForm){
+    public ResponseEntity<Object> saveDirector(@RequestBody @Valid PersonForm directorForm){
         return status(HttpStatus.CREATED).body(directorService.save(directorForm));
     }
 
     @GetMapping
-    public ResponseEntity<List<GetDirectorDto>> findAllDirectors(){
+    public ResponseEntity<List<GetPersonDto>> findAllDirectors(){
         return status(HttpStatus.OK).body(directorService.findAll());
     }
 
@@ -43,7 +43,7 @@ public class DirectorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDirector(@PathVariable(value = "id") UUID id,
-                                                 @RequestBody @Valid DirectorForm directorForm){
+                                                 @RequestBody @Valid PersonForm directorForm){
         return status(HttpStatus.OK).body(directorService.update(directorForm, id));
     }
 

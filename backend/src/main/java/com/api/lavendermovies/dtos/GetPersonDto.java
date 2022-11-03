@@ -1,20 +1,20 @@
-package com.api.lavendermovies.forms;
+package com.api.lavendermovies.dtos;
 
 import com.api.lavendermovies.enums.Gender;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
-public class ActorForm {
-    @NotBlank(message = "Field name is required")
+public class GetPersonDto {
+    private UUID id;
     private String name;
-    @Min(value = 1, message = "Age must have minimum value of 1")
     private int age;
     private int gender;
+    private List<GetMovieFromActorsDto> movies;
 
     public Gender getGender() {
         return Gender.valueOf(gender);

@@ -2,8 +2,9 @@ package com.api.lavendermovies.service;
 
 import com.api.lavendermovies.config.exceptions.BusinessException;
 import com.api.lavendermovies.domain.models.Actor;
-import com.api.lavendermovies.dtos.GetActorDto;
-import com.api.lavendermovies.forms.ActorForm;
+import com.api.lavendermovies.domain.models.Person;
+import com.api.lavendermovies.dtos.GetPersonDto;
+import com.api.lavendermovies.forms.PersonForm;
 import com.api.lavendermovies.repository.ActorRepository;
 import com.api.lavendermovies.utils.ObjectMapper;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +25,7 @@ public class ActorService {
         this.actorRepository = actorRepository;
     }
 
-    public ActorForm save(ActorForm actorForm) {
+    public PersonForm save(PersonForm actorForm) {
         var actor = ObjectMapper.map(actorForm, Actor.class);
         actor.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
@@ -33,19 +34,19 @@ public class ActorService {
         return actorForm;
     }
 
-    public List<GetActorDto> findAll() {
+    public List<GetPersonDto> findAll() {
         var actorList = actorRepository.findAll();
 
-        return ObjectMapper.mapAll(actorList, GetActorDto.class);
+        return ObjectMapper.mapAll(actorList, GetPersonDto.class);
     }
 
-    public GetActorDto findById(UUID id) {
+    public GetPersonDto findById(UUID id) {
         var actor = actorRepository.findById(id).orElseThrow(() -> new BusinessException("Actor not found"));
 
-        return ObjectMapper.map(actor, GetActorDto.class);
+        return ObjectMapper.map(actor, GetPersonDto.class);
     }
 
-    public ActorForm update(ActorForm actorForm, UUID id) {
+    public PersonForm update(PersonForm actorForm, UUID id) {
         var actor = actorRepository.findById(id).orElseThrow(() -> new BusinessException("Actor not found"));
 
         BeanUtils.copyProperties(actorForm, actor);

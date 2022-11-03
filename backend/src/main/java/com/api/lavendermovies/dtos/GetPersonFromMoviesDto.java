@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class GetDirectorFromMoviesDto {
+public class GetPersonFromMoviesDto {
     private UUID id;
     private String name;
     private int age;
