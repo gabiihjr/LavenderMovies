@@ -1,43 +1,77 @@
 package com.api.lavendermovies.service;
 
-import com.api.lavendermovies.config.exceptions.BusinessException;
-import com.api.lavendermovies.config.security.WebSecurityConfig;
 import com.api.lavendermovies.domain.models.Role;
 import com.api.lavendermovies.domain.models.User;
-import com.api.lavendermovies.dtos.GetUserDto;
 import com.api.lavendermovies.enums.RoleName;
-import com.api.lavendermovies.forms.UserForm;
 import com.api.lavendermovies.repository.RoleRepository;
 import com.api.lavendermovies.repository.UserRepository;
-import com.api.lavendermovies.config.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+@RequiredArgsConstructor
+@Transactional
+@Slf4j
 @Service
-public class UserService {
-    @Autowired
-    UserRepository userRepository;
+public class UserService implements IUserService, UserDetailsService {
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    RoleRepository roleRepository;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        user.getRoles().forEach(role -> { authorities.add(new SimpleGrantedAuthority(role.getRoleName().toString()));
+        });
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
 
-    public GetUserDto save(UserForm userForm) {
-        var password = WebSecurityConfig.passwordEncoder().encode(userForm.getPassword());
-        userForm.setPassword(password);
+    @Override
+    public User saveUser(User user) {
+        log.info("Saving new user {} to the database", user.getName());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
 
-        var user = ObjectMapper.map(userForm, User.class);
-        var role = roleRepository.findByRoleName(RoleName.ADMIN)
-                .orElseThrow(() -> new BusinessException("Role not found."));
+    @Override
+    public Role saveRole(Role role) {
+        log.info("Saving new role {} to the database", role.getRoleName());
+        return roleRepository.save(role);
+    }
 
-        var roleList = new ArrayList<Role>();
-        roleList.add(role);
+    @Override
+    public void addRoleToUser(String username, RoleName roleName) {
+        log.info("Adding role {} to user {}", roleName, username);
+        User user = userRepository.findByUsername(username);
+        Role role = roleRepository.findByRoleName(roleName);
 
-        user.setRoles(roleList);
+        user.getRoles().add(role);
 
-        userRepository.save(user);
+    }
 
-        return ObjectMapper.map(userForm, GetUserDto.class);
+    @Override
+    public User getUser(String username) {
+        log.info("Fetching user {}", username);
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        log.info("Fetching all users");
+        return userRepository.findAll();
     }
 }
