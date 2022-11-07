@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
+//@Primary
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
