@@ -3,6 +3,7 @@ package com.api.lavendermovies.config.security;
 import com.api.lavendermovies.domain.models.User;
 import com.api.lavendermovies.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-//@Primary
+@Primary
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
