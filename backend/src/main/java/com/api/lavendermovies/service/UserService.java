@@ -8,6 +8,7 @@ import com.api.lavendermovies.enums.RoleName;
 import com.api.lavendermovies.forms.UserForm;
 import com.api.lavendermovies.repository.RoleRepository;
 import com.api.lavendermovies.repository.UserRepository;
+import com.api.lavendermovies.service.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

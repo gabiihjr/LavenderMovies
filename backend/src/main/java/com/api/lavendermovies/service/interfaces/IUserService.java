@@ -1,4 +1,4 @@
-package com.api.lavendermovies.service;
+package com.api.lavendermovies.service.interfaces;
 
 import com.api.lavendermovies.domain.models.Role;
 import com.api.lavendermovies.domain.models.User;

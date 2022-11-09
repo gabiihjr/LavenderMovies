@@ -3,7 +3,7 @@ package com.api.lavendermovies.controller;
 import com.api.lavendermovies.domain.models.Role;
 import com.api.lavendermovies.domain.models.User;
 import com.api.lavendermovies.forms.UserForm;
-import com.api.lavendermovies.service.IUserService;
+import com.api.lavendermovies.service.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

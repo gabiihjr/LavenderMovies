@@ -3,7 +3,7 @@ package com.api.lavendermovies;
 import com.api.lavendermovies.domain.models.Role;
 import com.api.lavendermovies.enums.RoleName;
 import com.api.lavendermovies.repository.RoleRepository;
-import com.api.lavendermovies.service.IUserService;
+import com.api.lavendermovies.service.interfaces.IUserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
