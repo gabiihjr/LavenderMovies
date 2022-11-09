@@ -38,6 +38,7 @@ public class UserController {
         return status(HttpStatus.CREATED).body(userService.saveRole(roleForm));
     }
 
+    @PreAuthorize("permitAll()")
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
