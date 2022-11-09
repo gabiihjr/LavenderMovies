@@ -10,10 +10,8 @@ import java.util.List;
 
 public interface IUserService {
     User saveUser(UserForm user);
+    User getUser(String username);
+    List<User> getUsers();
     Role saveRole(Role role);
     void addRoleToUser(String username, RoleName roleName);
-
-    User getUser(String username);
-
-    List<User> getUsers();
 }
