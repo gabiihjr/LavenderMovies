@@ -1,4 +1,4 @@
-package com.api.lavendermovies.service;
+package com.api.lavendermovies.service.interfaces;
 
 import com.api.lavendermovies.domain.models.Role;
 import com.api.lavendermovies.domain.models.User;
@@ -10,10 +10,8 @@ import java.util.List;
 
 public interface IUserService {
     User saveUser(UserForm user);
+    User getUser(String username);
+    List<User> getUsers();
     Role saveRole(Role role);
     void addRoleToUser(String username, RoleName roleName);
-
-    User getUser(String username);
-
-    List<User> getUsers();
 }
