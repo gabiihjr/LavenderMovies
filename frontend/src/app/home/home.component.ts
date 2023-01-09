@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from './movie';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,11 @@ export class HomeComponent implements OnInit {
   numberOfMovies = 10;
 
   hideMovies = false;
+
+  movie: Movie = {
+    title: 'lalala',
+    summary: 'lala',
+  }
   
   constructor() { }
 
