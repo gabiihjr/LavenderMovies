@@ -1,0 +1,27 @@
+.header-container {
+  font-family: Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 4px solid #70548C;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.search-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.search-menu-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container {
+  width: 480px;
+  height: 38px;
+  background-color: #EAEAEA;
+  border-radius: 8px;
+}
