@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class LavenderMoviesApplication {
@@ -18,6 +19,7 @@ public class LavenderMoviesApplication {
 
 	@Bean
 	CommandLineRunner run(IUserService userService, RoleRepository roleRepository) {
+		System.out.println(new BCryptPasswordEncoder().encode("gabriela"));
 		return args -> {
 			boolean adminExists = roleRepository.findByRoleName(RoleName.ADMIN).isPresent();
 			boolean userExists = roleRepository.findByRoleName(RoleName.USER).isPresent();
