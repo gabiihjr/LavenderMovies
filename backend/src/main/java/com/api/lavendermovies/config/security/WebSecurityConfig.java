@@ -29,6 +29,8 @@ public class WebSecurityConfig {
 
 
         return http
+                .cors()
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()

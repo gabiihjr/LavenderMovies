@@ -1,3 +1,5 @@
+import { MovieModule } from './components/movie/movie.module';
+import { MovieComponent } from './components/movie/movie.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './services/authentication/authentication.module';
 import { HeaderModule } from './components/header/header.module';
@@ -23,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AuthenticationModule,
     HttpClientModule,
+    MovieModule
   ],
   providers: [],
   bootstrap: [AppComponent]
