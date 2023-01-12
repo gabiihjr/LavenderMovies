@@ -13,6 +13,9 @@ import { MovieComponent } from './movie.component';
   imports: [
     CommonModule
   ],
+  exports: [
+    MovieComponent,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

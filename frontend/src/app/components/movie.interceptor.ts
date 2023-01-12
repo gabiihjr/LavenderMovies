@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -8,13 +9,15 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+const token = environment.token;
+
 @Injectable()
 export class MovieInterceptor implements HttpInterceptor {
 
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const headers = new HttpHeaders().append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWJpIiwiZXhwIjoxNjc2MDM3OTYzLCJuYW1lIjoiZ2FicmllbGEifQ.vb4yOeG82hfkHDIwjw6LWFcNti986m_fGNA4Z4YHCEM');
+    const headers = new HttpHeaders().append('Authorization', `Bearer ${token}`);
     request = request.clone({ headers });
     return next.handle(request);
   }
