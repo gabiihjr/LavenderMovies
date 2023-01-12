@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+const token = `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWJpIiwiZXhwIjoxNjc2MDM3OTYzLCJuYW1lIjoiZ2FicmllbGEifQ.vb4yOeG82hfkHDIwjw6LWFcNti986m_fGNA4Z4YHCEM`
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
@@ -16,11 +17,11 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    if(this.tokenService.hasToken()) {
-      const token = this.tokenService.returnToken();
+    // if(this.tokenService.hasToken()) {
+    //   const token = this.tokenService.returnToken();
       const headers = new HttpHeaders().append('x-access-token', token);
       request = request.clone({ headers });
-    }
+    // }
 
     return next.handle(request);
   }
