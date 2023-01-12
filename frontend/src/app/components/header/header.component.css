@@ -6,12 +6,35 @@
   padding: 20px;
   border-bottom: 4px solid #70548C;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #161516;
+}
+
+a{
+  text-decoration: none;
+  background-color: #161516;
+}
+
+h1{
+  background-color: #161516;
+}
+
+span{
+  background-color: #EAEAEA;
+  color: #161516;
+  position: absolute;
+  right: 65px;
+}
+
+a:hover{
+  border-bottom: 1px solid #EAEAEA;
 }
 
 .search-container {
   display: flex;
   gap: 16px;
   align-items: center;
+  background-color: #161516;
+  position: relative;
 }
 
 .search-menu-container {

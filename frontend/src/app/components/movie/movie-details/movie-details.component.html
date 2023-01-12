@@ -1,0 +1,20 @@
+<div *ngIf="movie$ | async as movie">
+  <h3>Title</h3>
+  <p>{{ movie.title }}</p>
+  <h3>Summary</h3>
+  <p>{{ movie.summary }}</p>
+  <h3>Rating</h3>
+  <p>{{ movie.rating }}</p>
+  <h3>Duration</h3>
+  <p>{{ movie.duration }}</p>
+  <h3>Release Year</h3>
+  <p>{{ movie.releaseYear }}</p>
+  <h3>Genre</h3>
+  <p>{{ movie.genre }}</p>
+  <h3>Director</h3>
+  <p>{{ movie.director.name }}</p>
+  <h3>Writer</h3>
+  <p>{{ movie.writer.name }}</p>
+  <h3>Actors</h3>
+  <p>{{ movie.actors[0].name }}</p>
+</div>

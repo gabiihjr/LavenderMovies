@@ -1,6 +1,7 @@
 <p *ngIf="!movies?.length">No movies to see.</p>
 
-<div *ngFor="let movie of movies">
-  <p>{{ movie.title }}</p>
-  <p>{{ movie.summary }}</p>
+<div class="movie-container" *ngFor="let movie of movies">
+  <a [routerLink]="['/movie', movie.id]">
+    <p>{{ movie.title }}</p>
+  </a>
 </div>

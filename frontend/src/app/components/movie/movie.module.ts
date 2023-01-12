@@ -1,17 +1,21 @@
-import { MovieInterceptor } from './../movie.interceptor';
+import { RouterModule } from '@angular/router';
+import { MovieInterceptor } from './movie.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieComponent } from './movie.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 
 
 @NgModule({
   declarations: [
-    MovieComponent
+    MovieComponent,
+    MovieDetailsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     MovieComponent,
