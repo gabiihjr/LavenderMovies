@@ -1,7 +1,10 @@
+import { environment } from './../../../environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Movie } from '../components/movie/movie';
+import { Movie } from '../../components/movie/interfaces/movie';
+
+const apiURL = environment.apiURL;
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,10 @@ export class MovieService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWJpIiwiZXhwIjoxNjc2MDM3OTYzLCJuYW1lIjoiZ2FicmllbGEifQ.vb4yOeG82hfkHDIwjw6LWFcNti986m_fGNA4Z4YHCEM`
     })
-    return this.httpClient.get<Movie[]>(`http://localhost:8080/movie`)
+    return this.httpClient.get<Movie[]>(`${apiURL}/movie`)
+  }
+
+  findOneMovie(id: string): Observable<Movie>{
+    return this.httpClient.get<Movie>(`${apiURL}/movie/${id}`);
   }
 }
