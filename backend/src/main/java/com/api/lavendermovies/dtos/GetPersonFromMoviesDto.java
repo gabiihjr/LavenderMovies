@@ -11,9 +11,9 @@ import java.util.UUID;
 public class GetPersonFromMoviesDto {
     private UUID id;
     private String name;
-    private int age;
+    private int birthDate;
     private int gender;
-
+    private String image;
     public Gender getGender() {
         return Gender.valueOf(gender);
     }

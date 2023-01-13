@@ -12,9 +12,10 @@ import javax.validation.constraints.NotBlank;
 public class PersonForm {
     @NotBlank(message = "Field name is required")
     private String name;
-    @Min(value = 1, message = "Age must have minimum value of 1")
-    private int age;
+    @Min(value = 1800, message = "birthDate must have minimum value of 1800")
+    private int birthDate;
     private int gender;
+    private String image;
 
     public Gender getGender() {
         return Gender.valueOf(gender);

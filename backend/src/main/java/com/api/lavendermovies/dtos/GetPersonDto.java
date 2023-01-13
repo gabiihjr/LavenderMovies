@@ -12,8 +12,9 @@ import java.util.UUID;
 public class GetPersonDto {
     private UUID id;
     private String name;
-    private int age;
+    private int birthDate;
     private int gender;
+    private String image;
     private List<GetMovieFromActorsDto> movies;
 
     public Gender getGender() {
