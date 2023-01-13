@@ -1,28 +1,29 @@
 .header-container {
   font-family: Roboto;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   padding: 20px;
-  border-bottom: 4px solid #70548C;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: #161516;
+  box-shadow: 0px 4px 4px rgba(115, 105, 137, 0.25);
+  background-color: #0b1225;
+  height: 24px;
 }
 
 a{
   text-decoration: none;
-  background-color: #161516;
+  padding: 0 4px 8px 4px;
+  border-radius: 4px;
 }
 
 h1{
-  background-color: #161516;
+  font-size: 20px;
 }
 
 span{
   background-color: #EAEAEA;
   color: #161516;
   position: absolute;
-  right: 65px;
+  right: 35px;
 }
 
 a:hover{
@@ -33,7 +34,6 @@ a:hover{
   display: flex;
   gap: 16px;
   align-items: center;
-  background-color: #161516;
   position: relative;
 }
 
@@ -43,8 +43,8 @@ a:hover{
 }
 
 .input-container {
-  width: 480px;
-  height: 38px;
+  width: 440px;
+  height: 24px;
   background-color: #EAEAEA;
   border-radius: 8px;
 }

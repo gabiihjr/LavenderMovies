@@ -1,9 +1,15 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  margin-top: 40px;
+}
+
 .movie-container{
   margin-bottom: 20px;
   padding: 10px 20px 20px 20px;
-  border-bottom: 1px solid #70548C;
   display: flex;
-  align-items: center;
 }
 
 .movie-container p{
@@ -21,4 +27,6 @@ a:hover{
 
 .image-container{
   max-width: 200px;
+  border-radius: 8px;
+  box-shadow: 8px 8px 16px rgba(22, 22, 22, 0.667);
 }
