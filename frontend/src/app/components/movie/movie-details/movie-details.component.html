@@ -1,15 +1,27 @@
 <div class="main-container">
   <div class="movie-container" *ngIf="movie$ | async as movie">
     <h3>{{ movie.title }}</h3>
-    <img src="{{ movie.image }}" alt="Poster Image of {{ movie.title }}" />
-    <div>
-      <p>{{ movie.summary }}</p>
-    </div>
-    <div class="information-container">
-      <p>{{ movie.rating }}</p>
-      <p>{{ movie.duration }} min</p>
-      <p>{{ movie.releaseYear }}</p>
-      <p>{{ movie.genre }}</p>
+    <div class="title-summary">
+      <img src="{{ movie.image }}" alt="Poster Image of {{ movie.title }}" />
+      <section>
+        <div class="movie-summary">
+          <p>{{ movie.summary }}</p>
+        </div>
+        <div>
+          <div class="title-information">
+            <p>Rating</p>
+            <p>Duration</p>
+            <p>Release Year</p>
+            <p>Genre</p>
+          </div>
+          <div class="information-container">
+            <p>{{ movie.rating }}</p>
+            <p>{{ movie.duration }} min</p>
+            <p>{{ movie.releaseYear }}</p>
+            <p>{{ movie.genre }}</p>
+          </div>
+        </div>
+      </section>
     </div>
     <div class="writer-director-container">
       <div class="director-container">
