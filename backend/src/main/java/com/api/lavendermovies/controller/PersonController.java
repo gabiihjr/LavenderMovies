@@ -2,7 +2,7 @@ package com.api.lavendermovies.controller;
 
 import com.api.lavendermovies.dtos.GetPersonDto;
 import com.api.lavendermovies.forms.PersonForm;
-import com.api.lavendermovies.service.ActorService;
+import com.api.lavendermovies.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,44 +17,44 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/actor")
-public class ActorController {
+@RequestMapping("/person")
+public class PersonController {
     @Autowired
-    final ActorService actorService;
+    final PersonService personService;
 
-    public ActorController(ActorService actorService) {
-        this.actorService = actorService;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<Object> saveActor(@RequestBody @Valid PersonForm actorForm){
-        return status(HttpStatus.CREATED).body(actorService.save(actorForm));
+    public ResponseEntity<Object> savePerson(@RequestBody @Valid PersonForm actorForm){
+        return status(HttpStatus.CREATED).body(personService.save(actorForm));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
-    public ResponseEntity<List<GetPersonDto>> findAllActors(){
-        return status(HttpStatus.OK).body(actorService.findAll());
+    public ResponseEntity<List<GetPersonDto>> findAllPeople(){
+        return status(HttpStatus.OK).body(personService.findAll());
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{id}")
-    public ResponseEntity<Object> findOneActor(@PathVariable(value = "id") UUID id){
-        return status(HttpStatus.OK).body(actorService.findById(id));
+    public ResponseEntity<Object> findOnePerson(@PathVariable(value = "id") UUID id){
+        return status(HttpStatus.OK).body(personService.findById(id));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateActor(@PathVariable(value = "id") UUID id,
+    public ResponseEntity<Object> updatePerson(@PathVariable(value = "id") UUID id,
                                               @RequestBody @Valid PersonForm actorForm){
-        return status(HttpStatus.OK).body(actorService.update(actorForm, id));
+        return status(HttpStatus.OK).body(personService.update(actorForm, id));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteActor(@PathVariable(value = "id") UUID id){
-        actorService.delete(id);
-        return status(HttpStatus.OK).body("Actor deleted successfully");
+    public ResponseEntity<Object> deletePerson(@PathVariable(value = "id") UUID id){
+        personService.delete(id);
+        return status(HttpStatus.OK).body("Person deleted successfully");
     }
 }

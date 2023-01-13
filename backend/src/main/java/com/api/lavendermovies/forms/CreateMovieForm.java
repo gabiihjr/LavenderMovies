@@ -28,7 +28,7 @@ public class CreateMovieForm {
     @NotNull(message = "Field director is required")
     private UUID directorId;
     @NotNull(message = "Field writer is required")
-    private UUID writerId;
+    private List<UUID> writersIds;
     @NotNull(message = "Field actors is required")
     private List<UUID> actorsIds;
 
