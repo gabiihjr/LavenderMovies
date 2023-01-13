@@ -1,24 +1,36 @@
-<div *ngIf="movie$ | async as movie">
-  <h3>Title</h3>
-  <p>{{ movie.title }}</p>
-  <h3>Summary</h3>
-  <p>{{ movie.summary }}</p>
-  <h3>Rating</h3>
-  <p>{{ movie.rating }}</p>
-  <h3>Duration</h3>
-  <p>{{ movie.duration }}</p>
-  <h3>Release Year</h3>
-  <p>{{ movie.releaseYear }}</p>
-  <h3>Genre</h3>
-  <p>{{ movie.genre }}</p>
-  <h3>Director</h3>
-  <p>{{ movie.director.name }}</p>
-  <h3>Writers</h3>
-  <div *ngFor="let writer of movie.writers">
-    <p>{{ writer.name }}</p>
-  </div>
-  <h3>Actors</h3>
-  <div *ngFor="let actor of movie.actors">
-    <p>{{ actor.name }}</p>
+<div class="main-container">
+  <div class="movie-container" *ngIf="movie$ | async as movie">
+    <h3>{{ movie.title }}</h3>
+    <img src="{{ movie.image }}" alt="Poster Image of {{ movie.title }}" />
+    <div>
+      <p>{{ movie.summary }}</p>
+    </div>
+    <div class="information-container">
+      <p>{{ movie.rating }}</p>
+      <p>{{ movie.duration }} min</p>
+      <p>{{ movie.releaseYear }}</p>
+      <p>{{ movie.genre }}</p>
+    </div>
+    <div class="writer-director-container">
+      <div class="director-container">
+        <h3>Director</h3>
+        <img src="{{ movie.director.image }}" alt="Picture of {{ movie.director.name }}" />
+        <p>{{ movie.director.name }}</p>
+      </div>
+      <div class="writer-container">
+        <h3>Writers</h3>
+        <div class="writer-item" *ngFor="let writer of movie.writers">
+          <img src="{{ writer.image }}" alt="Picture of {{ writer.name }}" />
+          <p>{{ writer.name }}</p>
+        </div>
+      </div>
+    </div>
+    <h3>Actors</h3>
+    <div class="actor-container">
+      <div *ngFor="let actor of movie.actors">
+        <img src="{{ actor.image }}" alt="Picture of {{ actor.name }}" />
+        <p>{{ actor.name }}</p>
+      </div>
+    </div>
   </div>
 </div>
