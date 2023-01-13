@@ -15,6 +15,8 @@
   <p>{{ movie.director.name }}</p>
   <h3>Writer</h3>
   <p>{{ movie.writer.name }}</p>
-  <h3>Actors</h3>
-  <p>{{ movie.actors[0].name }}</p>
+  <h3 >Actors</h3>
+  <div *ngFor="let actor of movie.actors">
+    <p>{{ actor.name }}</p>
+  </div>
 </div>

@@ -16,6 +16,7 @@ public class GetMovieFromActorsDto {
     private int duration;
     private int releaseYear;
     private int genre;
+    private String image;
     private GetPersonFromMoviesDto director;
     private GetPersonFromMoviesDto writer;
 

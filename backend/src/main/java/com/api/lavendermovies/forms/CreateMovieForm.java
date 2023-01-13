@@ -23,6 +23,8 @@ public class CreateMovieForm {
     @Min(value = 1895, message = "Release Year must have minimum value of 1895")
     private int releaseYear;
     private int genre;
+    @NotBlank(message = "Field image is required")
+    private String image;
     @NotNull(message = "Field director is required")
     private UUID directorId;
     @NotNull(message = "Field writer is required")

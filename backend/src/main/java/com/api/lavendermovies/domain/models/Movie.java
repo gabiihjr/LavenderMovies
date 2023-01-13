@@ -45,6 +45,9 @@ public class Movie implements Serializable {
     @Column(nullable = false)
     private int genre;
 
+    @Column(nullable = false)
+    private String image;
+
     @ManyToOne
     @JoinColumn(name = "director_id", nullable = false)
     private Director director;
