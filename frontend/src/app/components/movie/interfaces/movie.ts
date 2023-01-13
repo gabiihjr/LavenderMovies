@@ -7,7 +7,8 @@ export interface Movie {
     duration?: number;
     releaseYear?: number;
     genre: string;
+    image: string;
     actors: Person[];
-    writer: Person;
+    writers: Person[];
     director: Person;
 }

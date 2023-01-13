@@ -18,7 +18,7 @@ public class GetMoviesFromDirectorDto {
     private int releaseYear;
     private int genre;
     private String image;
-    private GetPersonFromMoviesDto writer;
+    private GetPersonFromMoviesDto writers;
     private List<GetPersonFromMoviesDto> actors;
 
     public Genre getGenre() {

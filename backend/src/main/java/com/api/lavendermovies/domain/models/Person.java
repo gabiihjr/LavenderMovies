@@ -11,8 +11,10 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@MappedSuperclass
-public abstract class Person implements Serializable {
+//@MappedSuperclass
+@Entity
+@Table(name = "person")
+public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

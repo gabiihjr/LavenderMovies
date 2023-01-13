@@ -50,17 +50,19 @@ public class Movie implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "director_id", nullable = false)
-    private Director director;
+    private Person director;
 
-    @ManyToOne
-    @JoinColumn(name = "writer_id", nullable = false)
-    private Writer writer;
+    @ManyToMany
+    @JoinTable(name = "movies_writers",
+            joinColumns = {@JoinColumn(name = "movie_id") },
+            inverseJoinColumns = {@JoinColumn(name = "writer_id") })
+    private List<Person> writers;
 
     @ManyToMany
     @JoinTable(name = "movies_actors",
     joinColumns = {@JoinColumn(name = "movie_id") },
     inverseJoinColumns = {@JoinColumn(name = "actor_id") })
-    private List<Actor> actors;
+    private List<Person> actors;
 
     public Genre getGenre() {
         return Genre.valueOf(genre);

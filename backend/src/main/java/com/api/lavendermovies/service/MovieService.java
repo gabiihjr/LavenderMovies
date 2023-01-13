@@ -1,21 +1,21 @@
 package com.api.lavendermovies.service;
 
-import com.api.lavendermovies.config.exceptions.BusinessException;
-import com.api.lavendermovies.forms.CreateMovieForm;
-import com.api.lavendermovies.dtos.GetMovieDto;
-import com.api.lavendermovies.forms.UpdateMovieForm;
-import com.api.lavendermovies.domain.models.Movie;
-import com.api.lavendermovies.repository.ActorRepository;
-import com.api.lavendermovies.repository.DirectorRepository;
-import com.api.lavendermovies.repository.MovieRepository;
-import com.api.lavendermovies.repository.WriterRepository;
 import com.api.lavendermovies.config.ObjectMapper;
+import com.api.lavendermovies.config.exceptions.BusinessException;
+import com.api.lavendermovies.domain.models.Movie;
+import com.api.lavendermovies.domain.models.Person;
+import com.api.lavendermovies.dtos.GetMovieDto;
+import com.api.lavendermovies.forms.CreateMovieForm;
+import com.api.lavendermovies.forms.UpdateMovieForm;
+import com.api.lavendermovies.repository.MovieRepository;
+import com.api.lavendermovies.repository.PersonRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,28 +24,31 @@ public class MovieService {
     @Autowired
     final MovieRepository movieRepository;
     @Autowired
-    final DirectorRepository directorRepository;
-    @Autowired
-    final WriterRepository writerRepository;
-    @Autowired
-    final ActorRepository actorRepository;
+    final PersonRepository personRepository;
 
-    public MovieService(MovieRepository movieRepository, DirectorRepository directorRepository, WriterRepository writerRepository, ActorRepository actorRepository) {
+    public MovieService(MovieRepository movieRepository, PersonRepository personRepository) {
         this.movieRepository = movieRepository;
-        this.directorRepository = directorRepository;
-        this.writerRepository = writerRepository;
-        this.actorRepository = actorRepository;
+        this.personRepository = personRepository;
     }
 
     public CreateMovieForm save(CreateMovieForm movieForm) {
 
         var movie = ObjectMapper.map(movieForm, Movie.class);
-        var director = directorRepository.findById(movieForm.getDirectorId()).orElseThrow(() -> new BusinessException("Director not found"));
-        var writer = writerRepository.findById(movieForm.getWriterId()).orElseThrow(() -> new BusinessException("Writer not found"));
-        var actorsList = actorRepository.findAll();
+        var director = personRepository.findById(movieForm.getDirectorId()).orElseThrow(() -> new BusinessException("Director not found"));
+        var writersList = new ArrayList<Person>();
+        var actorsList = new ArrayList<Person>();
+
+        for(UUID writer : movieForm.getWritersIds()) {
+            var person = personRepository.findById(writer).orElseThrow(() -> new BusinessException("Writer not found"));
+            writersList.add(person);
+        }
+        for(UUID actor : movieForm.getActorsIds()) {
+            var person = personRepository.findById(actor).orElseThrow(() -> new BusinessException("Actor not found"));
+            actorsList.add(person);
+        }
 
         movie.setDirector(director);
-        movie.setWriter(writer);
+        movie.setWriters(writersList);
         movie.setActors(actorsList);
         movie.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 
@@ -75,7 +78,7 @@ public class MovieService {
         movie.setId(movie.getId());
         movie.setCreatedAt(movie.getCreatedAt());
         movie.setDirector(movie.getDirector());
-        movie.setWriter(movie.getWriter());
+        movie.setWriters(movie.getWriters());
         movie.setActors(movie.getActors());
         movie.setUpdatedAt(LocalDateTime.now(ZoneId.of("UTC")));
 

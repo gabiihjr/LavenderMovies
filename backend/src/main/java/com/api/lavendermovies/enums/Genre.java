@@ -8,7 +8,8 @@ public enum Genre {
     COMEDY(5),
     SCIFI(6),
     HORROR(7),
-    MUSICAL(8);
+    MUSICAL(8),
+    DRAMA(9);
 
     private int code;
 
