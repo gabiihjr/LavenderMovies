@@ -5,7 +5,7 @@ Lavender Movies is a Full Stack Web Application that has the purpose to show a l
 ### 🛠 IN PROGRESS
 
 ## 💻 Technologies & Tools
-- Java 19 (Spring Boot)
+- Java 17 (Spring Boot 2)
 - Postgres
 - Angular 15
 
