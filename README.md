@@ -13,7 +13,7 @@ Lavender Movies is a Full Stack Web Application that has the purpose to show a l
 - Gabriela Hermenegildo
 ## ⌨️ Backend
 
-- Backend was made using Spring Boot, Java 19, with OOP and Postgres as Database.
+- Backend was made using Spring Boot, Java 17, with OOP and Postgres as Database.
 
 ### Database Diagram
 
