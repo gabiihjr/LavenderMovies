@@ -3,7 +3,6 @@
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   justify-items: center;
-  margin-top: 40px;
 }
 
 .movie-container{
@@ -29,4 +28,22 @@ a:hover{
   max-width: 200px;
   border-radius: 8px;
   box-shadow: 8px 8px 16px rgba(22, 22, 22, 0.667);
+}
+
+.list-movie-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  background-color: #3c3c3c;
+  width: 200px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 1px 1px 8px #4f4d4d;
 }
