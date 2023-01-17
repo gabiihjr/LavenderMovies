@@ -15,6 +15,11 @@ Lavender Movies is a Full Stack Web Application that has the purpose to show a l
 
 - Backend was made using Spring Boot, Java 17, with OOP and Postgres as Database.
 
+It was created a CRUD of every entity, person, movie and user, also a route for authentication and generator of a token JWT.
+
+### Documentation
+https://documenter.getpostman.com/view/21958724/2s8ZDVZ3d5
+
 ### Database Diagram
 
 ![LavenderMovies](https://user-images.githubusercontent.com/94693150/212686123-f60c5aa5-f172-4734-860e-499ad4e87641.png)
