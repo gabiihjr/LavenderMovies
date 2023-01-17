@@ -1,7 +1,21 @@
 <div class="header-container">
   <a [routerLink]="['home']">
-    <h1>Lavender Movies</h1>
+    <h1>LAVENDER MOVIES</h1>
   </a>
+  <div class="button-container">
+    <a [routerLink]="['/login']">
+      <p>LOGIN</p>
+    </a>
+    <a>
+      <p>SIGN UP</p>
+    </a>
+    <a>
+      <p>ABOUT</p>
+    </a>
+    <a [routerLink]="['/movie']">
+      <p>MOVIES</p>
+    </a>
+  </div>
   <div search-menu-container>
     <div class="search-container">
       <input class="input-container" />
@@ -9,11 +23,5 @@
         search
       </span>
       <div>
-        <!-- <span class="material-symbols-outlined menu-container">
-      menu
-    </span> -->
-        <!-- <a [routerLink]="['/login']">
-          Login
-        </a> -->
       </div>
     </div>

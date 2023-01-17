@@ -1,10 +1,16 @@
 <p *ngIf="!movies?.length">No movies to see.</p>
 
-<div class="grid">
+<section class="list-movie-container">
+  <div class="title-container">
+    <h3>LIST OF MOVIES</h3>
+  </div>
+</section>
+
+<section class="grid">
   <div class="movie-container" *ngFor="let movie of movies">
     <a [routerLink]="['/movie', movie.id]">
       <img class="image-container" src="{{movie.image}}" alt="image poster of {{movie.title}}" />
       <p>{{ movie.title }}</p>
     </a>
   </div>
-</div>
+</section>

@@ -4,9 +4,7 @@
   align-items: baseline;
   justify-content: space-between;
   padding: 20px;
-  box-shadow: 0px 4px 4px rgba(115, 105, 137, 0.25);
-  background-color: #0b1225;
-  height: 24px;
+  height: 32px;
 }
 
 a{
@@ -30,6 +28,12 @@ a:hover{
   border-bottom: 1px solid #EAEAEA;
 }
 
+.button-container{
+  display: flex;
+  font-size: 16px;
+  gap: 16px;
+}
+
 .search-container {
   display: flex;
   gap: 16px;
@@ -43,7 +47,7 @@ a:hover{
 }
 
 .input-container {
-  width: 440px;
+  width: 350px;
   height: 24px;
   background-color: #EAEAEA;
   border-radius: 8px;
