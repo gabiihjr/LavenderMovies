@@ -29,4 +29,11 @@ export class AuthenticationService {
       })
     );
   }
+
+  logout() {
+    this.userService.logout();
+    return this.httpClient.get(
+      `${API}/logout`
+    )
+  }
 }
