@@ -33,7 +33,7 @@ public class MovieController {
         return status(HttpStatus.CREATED).body(movieService.save(movieForm));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<List<GetMovieDto>> findAllMovies(){
         return status(HttpStatus.OK).body(movieService.findAll());

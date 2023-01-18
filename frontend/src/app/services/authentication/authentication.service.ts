@@ -13,21 +13,22 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
-  authenticate(username: string, password: string): Observable<HttpResponse<any>> {
-    console.log(username, 'user na request');
+  authenticate(email: string, password: string): Observable<any> {
+    console.log(email, 'user na request');
     console.log(password, 'senha na request')
     return this.httpClient.post(
-      `http://localhost:8080/authenticate`,
+      `${API}/authenticate`,
       {
+        email,
         password,
-        username,
       },
-      {observe: 'response'}
+      {responseType: 'text'}
+      // {observe: 'response'}
     ).pipe(
       tap((res) => {
         console.log('RES', res);
-        const authToken = res.headers.get('x-access-token') ?? '';
-        this.userService.saveToken(authToken);
+        // const authToken = res.headers.get('x-access-token') ?? '';
+        this.userService.saveToken(res);
       })
     );
   }
