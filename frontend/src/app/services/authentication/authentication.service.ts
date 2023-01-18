@@ -23,11 +23,8 @@ export class AuthenticationService {
         password,
       },
       {responseType: 'text'}
-      // {observe: 'response'}
     ).pipe(
       tap((res) => {
-        console.log('RES', res);
-        // const authToken = res.headers.get('x-access-token') ?? '';
         this.userService.saveToken(res);
       })
     );
