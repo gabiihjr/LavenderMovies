@@ -5,7 +5,6 @@ import com.api.lavendermovies.dao.UserDao;
 import com.api.lavendermovies.dtos.AuthenticationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,7 +29,7 @@ public class AuthenticationController {
     private final UserDao userDao;
     private final JwtUtils jwtUtils;
 
-    @PreAuthorize("permitAll()")
+//    @PreAuthorize("permitAll()")
     @PostMapping
     public ResponseEntity<String> authenticate(
             @RequestBody AuthenticationRequest request
