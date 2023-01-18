@@ -11,18 +11,16 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void { }
 
   login() {
     this.authService.authenticate(this.username, this.password).subscribe({
       complete: () => {
-        alert("LOGIN FEITO");
+        this.router.navigate(['home']);
       },
       error: (error) => {
-        console.log('USERNAME', this.username);
-        console.log('PASSWORD', this.password);
         alert('User or password wrong')
         console.log('ERROR', error);
       }

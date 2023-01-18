@@ -1,10 +1,10 @@
-<p *ngIf="!movies?.length">No movies to see.</p>
-
 <section class="list-movie-container">
   <div class="title-container">
     <h3>LIST OF MOVIES</h3>
   </div>
 </section>
+
+<p *ngIf="!movies?.length">No movies to see.</p>
 
 <section class="grid">
   <div class="movie-container" *ngFor="let movie of movies">

@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../authentication.service';
 import { TokenService } from '../token/token.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -24,7 +25,8 @@ export class UserService {
   };
 
   returnUser() {
-    return this.userSubject.asObservable();
+    console.log('EMAIL', this.userSubject.value.sub);
+    return this.userSubject;
   };
 
   saveToken(token: string) {

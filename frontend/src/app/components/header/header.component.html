@@ -3,12 +3,17 @@
     <h1>LAVENDER MOVIES</h1>
   </a>
   <div class="button-container">
-    <a [routerLink]="['/login']">
-      <p>LOGIN</p>
+    <a *ngIf="user$.value.sub; else login">
+      <p (click)="logout()">LOGOUT</p>
     </a>
-    <a>
-      <p>SIGN UP</p>
-    </a>
+    <ng-template #login>
+      <a [routerLink]="['/login']">
+        <p>LOGIN</p>
+      </a>
+      <a>
+        <p>SIGN UP</p>
+      </a>
+    </ng-template>
     <a>
       <p>ABOUT</p>
     </a>

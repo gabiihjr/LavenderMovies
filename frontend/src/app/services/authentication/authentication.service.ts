@@ -23,13 +23,17 @@ export class AuthenticationService {
         password,
       },
       {responseType: 'text'}
-      // {observe: 'response'}
     ).pipe(
       tap((res) => {
-        console.log('RES', res);
-        // const authToken = res.headers.get('x-access-token') ?? '';
         this.userService.saveToken(res);
       })
     );
+  }
+
+  logout() {
+    this.userService.logout();
+    return this.httpClient.get(
+      `${API}/logout`
+    )
   }
 }

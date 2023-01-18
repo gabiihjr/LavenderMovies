@@ -13,6 +13,11 @@ a{
   border-radius: 4px;
 }
 
+a:hover{
+  border-bottom: 1px solid #EAEAEA;
+  cursor: pointer;
+}
+
 h1{
   font-size: 20px;
 }
@@ -22,10 +27,6 @@ span{
   color: #161516;
   position: absolute;
   right: 35px;
-}
-
-a:hover{
-  border-bottom: 1px solid #EAEAEA;
 }
 
 .button-container{

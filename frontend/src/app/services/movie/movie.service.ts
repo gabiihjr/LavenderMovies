@@ -17,7 +17,7 @@ export class MovieService {
   findAllMovies(): Observable<Movie[]> {
     const headers = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      // 'Authorization': `Bearer ${token}`
     })
     return this.httpClient.get<Movie[]>(`${apiURL}/movie`)
   }
