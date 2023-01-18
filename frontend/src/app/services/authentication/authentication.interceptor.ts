@@ -17,11 +17,13 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    // if(this.tokenService.hasToken()) {
-    //   const token = this.tokenService.returnToken();
+    // const headers = new HttpHeaders().append('Content-Type', `text/plain;charset=UTF-8`);
+    // request = request.clone({ headers });
+    if(this.tokenService.hasToken()) {
+      const token = this.tokenService.returnToken();
       const headers = new HttpHeaders().append('x-access-token', token);
       request = request.clone({ headers });
-    // }
+    }
 
     return next.handle(request);
   }
