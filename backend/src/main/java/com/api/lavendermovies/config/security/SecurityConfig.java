@@ -36,6 +36,8 @@ public class SecurityConfig {
                 .permitAll()
                 .antMatchers("/logout")
                 .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
