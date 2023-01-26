@@ -4,6 +4,7 @@ import com.api.lavendermovies.config.ObjectMapper;
 import com.api.lavendermovies.config.exceptions.BusinessException;
 import com.api.lavendermovies.domain.models.Role;
 import com.api.lavendermovies.domain.models.User;
+import com.api.lavendermovies.dtos.GetUserDto;
 import com.api.lavendermovies.enums.RoleName;
 import com.api.lavendermovies.forms.UserForm;
 import com.api.lavendermovies.repository.RoleRepository;
@@ -43,8 +44,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<GetUserDto> getUsers() {
+        var users = userRepository.findAll();
+        return ObjectMapper.mapAll(users, GetUserDto.class);
     }
 
     @Override

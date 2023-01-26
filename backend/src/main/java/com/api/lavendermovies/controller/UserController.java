@@ -1,7 +1,7 @@
 package com.api.lavendermovies.controller;
 
 import com.api.lavendermovies.domain.models.Role;
-import com.api.lavendermovies.domain.models.User;
+import com.api.lavendermovies.dtos.GetUserDto;
 import com.api.lavendermovies.forms.UserForm;
 import com.api.lavendermovies.service.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +24,9 @@ import static org.springframework.http.ResponseEntity.status;
 public class UserController {
     private final IUserService userService;
 
-    @PreAuthorize("permitAll()")
-    @PostMapping
+    @PostMapping("/signup")
     public ResponseEntity<Object> saveUser(@RequestBody @Valid UserForm userForm){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/users").toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user").toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(userForm));
 //        return status(HttpStatus.CREATED).body(userService.saveUser(userForm));
     }
@@ -40,7 +39,7 @@ public class UserController {
 
     @PreAuthorize("permitAll()")
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<GetUserDto>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 }

@@ -3,6 +3,12 @@
     <h1>LAVENDER MOVIES</h1>
   </a>
   <div class="button-container">
+    <a [routerLink]="['/movie']">
+      <p>MOVIES</p>
+    </a>
+    <a>
+      <p>ABOUT</p>
+    </a>
     <a *ngIf="user$.value.sub; else login">
       <p (click)="logout()">LOGOUT</p>
     </a>
@@ -10,16 +16,10 @@
       <a [routerLink]="['/login']">
         <p>LOGIN</p>
       </a>
-      <a>
+      <a [routerLink]="['/signup']">
         <p>SIGN UP</p>
       </a>
     </ng-template>
-    <a>
-      <p>ABOUT</p>
-    </a>
-    <a [routerLink]="['/movie']">
-      <p>MOVIES</p>
-    </a>
   </div>
   <div search-menu-container>
     <div class="search-container">
