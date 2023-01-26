@@ -2,7 +2,7 @@ import { Observable, tap } from 'rxjs';
 import { UserService } from './user/user.service';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const API = environment.apiURL;
 
@@ -13,18 +13,19 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
-  authenticate(email: string, password: string): Observable<any> {
-    console.log(email, 'user na request');
-    console.log(password, 'senha na request')
+  authenticate(username: string, password: string): Observable<any> {
+    console.log(username, 'user na request');
+    console.log(password, 'senha na request');
     return this.httpClient.post(
       `${API}/authenticate`,
       {
-        email,
+        username,
         password,
       },
       {responseType: 'text'}
     ).pipe(
       tap((res) => {
+        console.log('RES', res);
         this.userService.saveToken(res);
       })
     );

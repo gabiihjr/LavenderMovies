@@ -25,7 +25,7 @@ export class UserService {
   };
 
   returnUser() {
-    console.log('EMAIL', this.userSubject.value.sub);
+    console.log('USER', this.userSubject.value.sub);
     return this.userSubject;
   };
 

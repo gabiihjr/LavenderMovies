@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Movie } from '../../components/movie/interfaces/movie';
 
 const apiURL = environment.apiURL;
-const token = environment.token;
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,6 @@ export class MovieService {
   findAllMovies(): Observable<Movie[]> {
     const headers = new Headers({
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${token}`
     })
     return this.httpClient.get<Movie[]>(`${apiURL}/movie`)
   }

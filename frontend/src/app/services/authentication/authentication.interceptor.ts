@@ -9,22 +9,17 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const token = `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWJpIiwiZXhwIjoxNjc2MDM3OTYzLCJuYW1lIjoiZ2FicmllbGEifQ.vb4yOeG82hfkHDIwjw6LWFcNti986m_fGNA4Z4YHCEM`
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
   constructor(private tokenService: TokenService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-
-    // const headers = new HttpHeaders().append('Content-Type', `text/plain;charset=UTF-8`);
-    // request = request.clone({ headers });
     if(this.tokenService.hasToken()) {
       const token = this.tokenService.returnToken();
-      const headers = new HttpHeaders().append('x-access-token', token);
+      const headers = new HttpHeaders().append('Authorization', `Bearer ${token}`);
       request = request.clone({ headers });
     }
-
     return next.handle(request);
   }
 }

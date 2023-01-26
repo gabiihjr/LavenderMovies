@@ -1,10 +1,11 @@
 package com.api.lavendermovies.controller;
 
 import com.api.lavendermovies.config.security.JwtUtils;
-import com.api.lavendermovies.dao.UserDao;
 import com.api.lavendermovies.dtos.AuthenticationRequest;
+import com.api.lavendermovies.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,18 +27,18 @@ public class AuthenticationController {
 //    }
 
     private final AuthenticationManager authenticationManager;
-    private final UserDao userDao;
+    private final UserRepository userRepository;
     private final JwtUtils jwtUtils;
 
-//    @PreAuthorize("permitAll()")
+    @PreAuthorize("permitAll()")
     @PostMapping
     public ResponseEntity<String> authenticate(
             @RequestBody AuthenticationRequest request
     ) {
         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
-        final UserDetails user = userDao.findUserByEmail(request.getEmail());
+        final UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         if (user != null) {
             return ResponseEntity.ok(jwtUtils.generateToken(user));
         }

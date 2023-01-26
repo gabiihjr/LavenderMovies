@@ -1,4 +1,4 @@
-import { MovieInterceptor } from './../../services/movie/movie.interceptor';
+import { AuthenticationInterceptor } from './../../services/authentication/authentication.interceptor';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -20,12 +20,5 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
   exports: [
     MovieComponent,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MovieInterceptor,
-      multi: true,
-    }
-  ]
 })
 export class MovieModule { }
