@@ -1,6 +1,5 @@
 package com.api.lavendermovies.config.security;
 
-import com.api.lavendermovies.dao.UserDao;
 import com.api.lavendermovies.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,8 +21,6 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
-
-    private final UserDao userDao;
     private final UserRepository userRepository;
     private final JwtUtils jwtUtils;
 

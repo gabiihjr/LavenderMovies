@@ -1,3 +1,4 @@
+import { SignupComponent } from './pages/signup/signup.component';
 import { MovieDetailsComponent } from './components/movie/movie-details/movie-details.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'login',
     pathMatch: 'full',
     component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    pathMatch: 'full',
+    component: SignupComponent,
   },
   {
     path: 'movie',

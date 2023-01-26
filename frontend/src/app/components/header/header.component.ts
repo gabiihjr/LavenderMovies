@@ -20,8 +20,8 @@ export class HeaderComponent {
         this.router.navigate(['login']);
       },
       error: (error) => {
+        this.router.navigate(['login']);
         console.log('ERROR', error);
-        // alert('DEU ERRO SUA BURRA');
       }
     })
   }

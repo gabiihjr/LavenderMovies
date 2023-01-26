@@ -28,13 +28,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .cors()
                 .and()
-                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate")
+                .antMatchers("/signup")
                 .permitAll()
-                .antMatchers("/logout")
+                .antMatchers("/authenticate/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

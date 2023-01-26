@@ -1,0 +1,14 @@
+<div class="signup-container">
+  <h2>SIGN UP</h2>
+  <form [formGroup]="newUserForm" (submit)="saveUser()">
+    <div class="input-container">
+      <input type="username" placeholder="Username" formControlName="username" />
+      <input type="text" placeholder="Name" formControlName="name" />
+      <input type="email" placeholder="Email" formControlName="email" />
+      <input placeholder="Password" formControlName="password" />
+    </div>
+    <div class="button-container">
+      <button type="submit">SUBMIT</button>
+    </div>
+  </form>
+</div>
