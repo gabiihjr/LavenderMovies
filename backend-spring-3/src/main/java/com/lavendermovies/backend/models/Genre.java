@@ -1,7 +1,6 @@
 package com.lavendermovies.backend.models;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +19,6 @@ public class Genre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Integer id;
     private String name;
 }
